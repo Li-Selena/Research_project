@@ -1,0 +1,9 @@
+
+<library path="omni_caster_controller">
+  <class name="omni_caster_controller/OmniCasterController"
+         type="omni_caster_controller::OmniCasterController" base_class_type="controller_interface::ControllerInterface">
+  <description>
+    OmniCasterController ros2_control controller.
+  </description>
+  </class>
+</library>

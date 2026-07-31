@@ -1,0 +1,107 @@
+omni_caster_controller:
+  forward_steering_name:
+    {
+      type: string,
+      default_value: "",
+      description: "Names of the forward side steering' joint",
+      validation: { not_empty<>: null },
+    }
+  left_steering_name:
+    {
+      type: string,
+      default_value: "",
+      description: "Names of the left side steering' joint",
+      validation: { not_empty<>: null },
+    }
+  right_steering_name:
+    {
+      type: string,
+      default_value: "",
+      description: "Names of the right side steering' joint",
+      validation: { not_empty<>: null },
+    }
+  forward_wheel_name:
+    {
+      type: string,
+      default_value: "",
+      description: "Names of the forward side wheels' joint",
+      validation: { not_empty<>: null },
+    }
+  left_wheel_name:
+    {
+      type: string,
+      default_value: "",
+      description: "Names of the left side wheels' joint",
+      validation: { not_empty<>: null },
+    }
+  right_wheel_name:
+    {
+      type: string,
+      default_value: "",
+      description: "Names of the right side wheels' joint",
+      validation: { not_empty<>: null },
+    }
+  wheel_radius:
+    {
+      type: double,
+      default_value: 0.0,
+      description: "Radius of a wheel, i.e., wheels size, used for transformation of linear velocity into wheel rotations. If this parameter is wrong the robot will move faster or slower then expected.",
+      validation: { gt<>: [0.0] },
+    }
+  offset:
+    {
+      type: double,
+      default_value: 0.0,
+      description: "offset from steering to wheel",
+      validation: { gt<>: [0.0] },
+    }
+  distance_steering2chassiscentens:
+    {
+      type: double,
+      default_value: 0.0,
+      description: "offset from steering to wheel",
+      validation: { gt<>: [0.0] },
+    }
+  odom_frame_id:
+    {
+      type: string,
+      default_value: "odom",
+      description: "Name of the frame for odometry. This frame is parent of ``base_frame_id`` when controller publishes odometry.",
+    }
+  base_frame_id:
+    {
+      type: string,
+      default_value: "base_link",
+      description: "Name of the robot's base frame that is child of the odometry frame.",
+    }
+  cmd_vel_timeout: {
+      type: double,
+      default_value: 0.5, # seconds
+      description: "Timeout in seconds, after which input command on ``cmd_vel`` topic is considered staled.",
+    }
+  use_stamped_vel:
+    {
+      type: bool,
+      default_value: false,
+      description: "Use stamp from input velocity message to calculate how old the command actually is.",
+    }
+  linear:
+    has_velocity_limits: { type: bool, default_value: false }
+    has_acceleration_limits: { type: bool, default_value: false }
+    has_jerk_limits: { type: bool, default_value: false }
+    max_velocity: { type: double, default_value: .NAN }
+    min_velocity: { type: double, default_value: .NAN }
+    max_acceleration: { type: double, default_value: .NAN }
+    min_acceleration: { type: double, default_value: .NAN }
+    max_jerk: { type: double, default_value: .NAN }
+    min_jerk: { type: double, default_value: .NAN }
+  angular:
+    has_velocity_limits: { type: bool, default_value: false }
+    has_acceleration_limits: { type: bool, default_value: false }
+    has_jerk_limits: { type: bool, default_value: false }
+    max_velocity: { type: double, default_value: .NAN }
+    min_velocity: { type: double, default_value: .NAN }
+    max_acceleration: { type: double, default_value: .NAN }
+    min_acceleration: { type: double, default_value: .NAN }
+    max_jerk: { type: double, default_value: .NAN }
+    min_jerk: { type: double, default_value: .NAN }

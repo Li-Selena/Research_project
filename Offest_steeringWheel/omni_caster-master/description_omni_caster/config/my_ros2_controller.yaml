@@ -1,0 +1,69 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 100 # Hz
+    use_sim_time: true
+    caster_joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+      use_sim_time: true
+    # caster_effort_controller:
+    #   type: effort_controllers/JointGroupEffortController
+    # caster_velocity_controller:
+    #   type: velocity_controllers/JointGroupVelocityController
+    omni_controller:
+      type: omni_caster_controller/OmniCasterController
+
+# caster_effort_controller:
+#   ros__parameters:
+#     joints:
+#       - left_wheel_joint
+#       - right_wheel_joint
+#       - forward_wheel_joint
+#       - left_steering_joint
+#       - right_steering_joint
+#       - forward_steering_joint
+#     interface_name: effort
+
+# caster_velocity_controller:
+#   ros__parameters:
+#     joints:
+#       - left_wheel_joint
+#       - right_wheel_joint
+#       - forward_wheel_joint
+#       - left_steering_joint
+#       - right_steering_joint
+#       - forward_steering_joint
+#     interface_name: velocity
+omni_controller:
+  ros__parameters:
+    forward_steering_name: forward_steering_joint
+    right_steering_name: right_steering_joint
+    left_steering_name: left_steering_joint
+    forward_wheel_name: forward_wheel_joint
+    left_wheel_name: left_wheel_joint
+    right_wheel_name: right_wheel_joint
+    wheel_radius: 0.1
+    offset: 0.05
+    distance_steering2chassiscentens: 0.3
+    odom_frame_id: "odom"
+    use_stamped_vel: false
+    cmd_vel_timeout: 0.5
+    linear:
+      has_velocity_limits: true
+      has_acceleration_limits: true
+      has_jerk_limits: false
+      max_velocity: 4.0
+      min_velocity: -4.0
+      max_acceleration: 3.0
+      min_acceleration: -3.0
+      max_jerk: 1.0
+      min_jerk: -1.0
+    angular:
+      has_velocity_limits: true
+      has_acceleration_limits: true
+      has_jerk_limits: false
+      max_velocity: 2.0
+      min_velocity: -2.0
+      max_acceleration: 2.0
+      min_acceleration: -2.0
+      max_jerk: 1.0
+      min_jerk: -1.0
