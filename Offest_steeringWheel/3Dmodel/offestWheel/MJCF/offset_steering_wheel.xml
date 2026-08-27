@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mujoco model="offset_steering_wheel">
+  <!--
+    Dedicated MJCF model generated from the SolidWorks assembly STL export.
+
+    Coordinate convention:
+      +x, +y : chassis plane
+      +z     : upward
+      STL vertices are already expressed in one common assembly frame (metres).
+
+    Initial geometry:
+      steering pivots : ( 0.5,  0.35), ( 0.5, -0.35),
+                        (-0.5, -0.35), (-0.5,  0.35)
+      wheel radius    : 0.075 m
+      caster offset   : 0.105 m along -x at qpos = 0
+
+    The masses below are simulation-ready initial estimates. Replace them with
+    measured CAD mass properties when those values become available.
+  -->
+
+  <compiler angle="radian"
+            autolimits="true"
+            inertiafromgeom="true"
+            meshdir="../STL"/>
+
+  <option timestep="0.002"
+          gravity="0 0 -9.81"
+          integrator="implicitfast"
+          cone="elliptic"/>
+
+  <statistic center="0 0 0.15" extent="1.5"/>
+
+  <visual>
+    <headlight ambient="0.35 0.35 0.35" diffuse="0.7 0.7 0.7" specular="0.2 0.2 0.2"/>
+    <rgba haze="0.15 0.25 0.35 1"/>
+    <global azimuth="135" elevation="-25"/>
+  </visual>
+
+  <default>
+    <joint damping="0.05" armature="0.002"/>
+
+    <default class="visual_mesh">
+      <geom type="mesh" contype="0" conaffinity="0" group="2" density="0"/>
+    </default>
+
+    <default class="collision">
+      <geom group="3"
+            rgba="0 0 0 0"
+            condim="3"
+            friction="0.8 0.02 0.001"
+            solref="0.01 1"
+            solimp="0.9 0.95 0.001"/>
+    </default>
+
+    <default class="wheel_collision">
+      <geom group="3"
+            rgba="0 0 0 0"
+            condim="4"
+            friction="1.0 0.02 0.001"
+            solref="0.005 1"
+            solimp="0.95 0.99 0.001"/>
+    </default>
+  </default>
+
+  <asset>
+    <mesh name="base_mesh" file="base/offestWheel - 底盘-1.STL"/>
+
+    <mesh name="caster_bracket_1_mesh" file="caster_1/offestWheel - 脚轮架-1.STL"/>
+    <mesh name="steering_turntable_1_mesh" file="caster_1/offestWheel - 转向轮-1.STL"/>
+    <mesh name="drive_wheel_1_mesh" file="wheel_1/offestWheel - 脚轮-1.STL"/>
+
+    <mesh name="caster_bracket_2_mesh" file="caster_2/offestWheel - 脚轮架-2.STL"/>
+    <mesh name="steering_turntable_2_mesh" file="caster_2/offestWheel - 转向轮-2.STL"/>
+    <mesh name="drive_wheel_2_mesh" file="wheel_2/offestWheel - 脚轮-2.STL"/>
+
+    <mesh name="caster_bracket_3_mesh" file="caster_3/offestWheel - 脚轮架-3.STL"/>
+    <mesh name="steering_turntable_3_mesh" file="caster_3/offestWheel - 转向轮-3.STL"/>
+    <mesh name="drive_wheel_3_mesh" file="wheel_3/offestWheel - 脚轮-3.STL"/>
+
+    <mesh name="caster_bracket_4_mesh" file="caster_4/offestWheel - 脚轮架-4.STL"/>
+    <mesh name="steering_turntable_4_mesh" file="caster_4/offestWheel - 转向轮-4.STL"/>
+    <mesh name="drive_wheel_4_mesh" file="wheel_4/offestWheel - 脚轮-4.STL"/>
+
+    <!-- With texuniform=true and texrepeat=1, every checker cell is 1 m x 1 m. -->
+    <texture name="floor_checker_texture"
+             type="2d"
+             builtin="checker"
+             width="512"
+             height="512"
+             rgb1="1 1 1"
+             rgb2="0 0 0"/>
+
+    <material name="base_material" rgba="0.16 0.32 0.72 1"/>
+    <material name="caster_material" rgba="0.55 0.58 0.62 1"/>
+    <material name="turntable_material" rgba="0.90 0.55 0.12 1"/>
+    <!-- Light pink keeps the wheel grooves visible while the wheel rotates. -->
+    <material name="wheel_material"
+              rgba="0.95 0.68 0.78 1"
+              specular="0.15"
+              shininess="0.25"/>
+    <material name="floor_material"
+              texture="floor_checker_texture"
+              texrepeat="1 1"
+              texuniform="true"
+              reflectance="0.1"
+              rgba="1 1 1 1"/>
+  </asset>
+
+  <worldbody>
+    <light name="key_light" pos="0 -1.5 2.5" dir="0 0.45 -1" directional="true"/>
+    <geom name="floor"
+          type="plane"
+          size="0 0 0.1"
+          material="floor_material"
+          condim="3"
+          friction="1.0 0.02 0.001"/>
+
+    <!-- The free body is raised by the wheel radius plus the STL wheel-centre height. -->
+    <body name="base" pos="0 0 0.175">
+      <freejoint name="base_freejoint"/>
+
+      <geom name="base_visual"
+            class="visual_mesh"
+            mesh="base_mesh"
+            material="base_material"/>
+      <geom name="base_collision"
+            class="collision"
+            type="box"
+            pos="0 0 0.035"
+            size="0.6 0.45 0.035"
+            mass="20"/>
+
+      <site name="imu_site" pos="0 0 0.07" size="0.008" rgba="0.1 1 0.1 1"/>
+      <camera name="tracking_camera" mode="trackcom" pos="1.7 -1.7 1.2" xyaxes="0.707 0.707 0 -0.333 0.333 0.882"/>
+
+      <!-- Caster 1: front-left, steering pivot (0.5, 0.35). -->
+      <body name="caster_1">
+        <joint name="steering_joint_1" type="hinge" pos="0.5 0.35 0.035" axis="0 0 1"/>
+        <geom name="caster_bracket_1_visual" class="visual_mesh" mesh="caster_bracket_1_mesh" material="caster_material"/>
+        <geom name="steering_turntable_1_visual" class="visual_mesh" mesh="steering_turntable_1_mesh" material="turntable_material"/>
+        <geom name="caster_bracket_1_collision" class="collision" type="box" pos="0.45 0.35 -0.0525" size="0.1 0.035 0.0925" mass="2"/>
+        <geom name="steering_turntable_1_collision" class="collision" type="cylinder" pos="0.5 0.35 0.035" size="0.04 0.025" mass="0.5"/>
+
+        <body name="wheel_1">
+          <joint name="wheel_joint_1" type="hinge" pos="0.395 0.35 -0.1" axis="0 1 0"/>
+          <geom name="wheel_1_visual" class="visual_mesh" mesh="drive_wheel_1_mesh" material="wheel_material"/>
+          <geom name="wheel_1_collision" class="wheel_collision" type="cylinder" pos="0.395 0.35 -0.1" euler="1.57079632679 0 0" size="0.075 0.04" mass="1.5"/>
+        </body>
+      </body>
+
+      <!-- Caster 2: front-right, steering pivot (0.5, -0.35). -->
+      <body name="caster_2">
+        <joint name="steering_joint_2" type="hinge" pos="0.5 -0.35 0.035" axis="0 0 1"/>
+        <geom name="caster_bracket_2_visual" class="visual_mesh" mesh="caster_bracket_2_mesh" material="caster_material"/>
+        <geom name="steering_turntable_2_visual" class="visual_mesh" mesh="steering_turntable_2_mesh" material="turntable_material"/>
+        <geom name="caster_bracket_2_collision" class="collision" type="box" pos="0.45 -0.35 -0.0525" size="0.1 0.035 0.0925" mass="2"/>
+        <geom name="steering_turntable_2_collision" class="collision" type="cylinder" pos="0.5 -0.35 0.035" size="0.04 0.025" mass="0.5"/>
+
+        <body name="wheel_2">
+          <joint name="wheel_joint_2" type="hinge" pos="0.395 -0.35 -0.1" axis="0 1 0"/>
+          <geom name="wheel_2_visual" class="visual_mesh" mesh="drive_wheel_2_mesh" material="wheel_material"/>
+          <geom name="wheel_2_collision" class="wheel_collision" type="cylinder" pos="0.395 -0.35 -0.1" euler="1.57079632679 0 0" size="0.075 0.04" mass="1.5"/>
+        </body>
+      </body>
+
+      <!-- Caster 3: rear-right, steering pivot (-0.5, -0.35). -->
+      <body name="caster_3">
+        <joint name="steering_joint_3" type="hinge" pos="-0.5 -0.35 0.035" axis="0 0 1"/>
+        <geom name="caster_bracket_3_visual" class="visual_mesh" mesh="caster_bracket_3_mesh" material="caster_material"/>
+        <geom name="steering_turntable_3_visual" class="visual_mesh" mesh="steering_turntable_3_mesh" material="turntable_material"/>
+        <geom name="caster_bracket_3_collision" class="collision" type="box" pos="-0.55 -0.35 -0.0525" size="0.1 0.035 0.0925" mass="2"/>
+        <geom name="steering_turntable_3_collision" class="collision" type="cylinder" pos="-0.5 -0.35 0.035" size="0.04 0.025" mass="0.5"/>
+
+        <body name="wheel_3">
+          <joint name="wheel_joint_3" type="hinge" pos="-0.605 -0.35 -0.1" axis="0 1 0"/>
+          <geom name="wheel_3_visual" class="visual_mesh" mesh="drive_wheel_3_mesh" material="wheel_material"/>
+          <geom name="wheel_3_collision" class="wheel_collision" type="cylinder" pos="-0.605 -0.35 -0.1" euler="1.57079632679 0 0" size="0.075 0.04" mass="1.5"/>
+        </body>
+      </body>
+
+      <!-- Caster 4: rear-left, steering pivot (-0.5, 0.35). -->
+      <body name="caster_4">
+        <joint name="steering_joint_4" type="hinge" pos="-0.5 0.35 0.035" axis="0 0 1"/>
+        <geom name="caster_bracket_4_visual" class="visual_mesh" mesh="caster_bracket_4_mesh" material="caster_material"/>
+        <geom name="steering_turntable_4_visual" class="visual_mesh" mesh="steering_turntable_4_mesh" material="turntable_material"/>
+        <geom name="caster_bracket_4_collision" class="collision" type="box" pos="-0.55 0.35 -0.0525" size="0.1 0.035 0.0925" mass="2"/>
+        <geom name="steering_turntable_4_collision" class="collision" type="cylinder" pos="-0.5 0.35 0.035" size="0.04 0.025" mass="0.5"/>
+
+        <body name="wheel_4">
+          <joint name="wheel_joint_4" type="hinge" pos="-0.605 0.35 -0.1" axis="0 1 0"/>
+          <geom name="wheel_4_visual" class="visual_mesh" mesh="drive_wheel_4_mesh" material="wheel_material"/>
+          <geom name="wheel_4_collision" class="wheel_collision" type="cylinder" pos="-0.605 0.35 -0.1" euler="1.57079632679 0 0" size="0.075 0.04" mass="1.5"/>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <!-- Velocity controls are ordered steering 1..4, then wheel 1..4. -->
+    <velocity name="steering_velocity_1" joint="steering_joint_1" kv="30" ctrlrange="-6.283 6.283" forcerange="-80 80"/>
+    <velocity name="steering_velocity_2" joint="steering_joint_2" kv="30" ctrlrange="-6.283 6.283" forcerange="-80 80"/>
+    <velocity name="steering_velocity_3" joint="steering_joint_3" kv="30" ctrlrange="-6.283 6.283" forcerange="-80 80"/>
+    <velocity name="steering_velocity_4" joint="steering_joint_4" kv="30" ctrlrange="-6.283 6.283" forcerange="-80 80"/>
+
+    <velocity name="wheel_velocity_1" joint="wheel_joint_1" kv="15" ctrlrange="-40 40" forcerange="-120 120"/>
+    <velocity name="wheel_velocity_2" joint="wheel_joint_2" kv="15" ctrlrange="-40 40" forcerange="-120 120"/>
+    <velocity name="wheel_velocity_3" joint="wheel_joint_3" kv="15" ctrlrange="-40 40" forcerange="-120 120"/>
+    <velocity name="wheel_velocity_4" joint="wheel_joint_4" kv="15" ctrlrange="-40 40" forcerange="-120 120"/>
+  </actuator>
+
+  <sensor>
+    <framepos name="base_position" objtype="body" objname="base"/>
+    <framequat name="base_orientation" objtype="body" objname="base"/>
+    <gyro name="base_angular_velocity" site="imu_site"/>
+    <accelerometer name="base_linear_acceleration" site="imu_site"/>
+
+    <jointpos name="steering_angle_1" joint="steering_joint_1"/>
+    <jointpos name="steering_angle_2" joint="steering_joint_2"/>
+    <jointpos name="steering_angle_3" joint="steering_joint_3"/>
+    <jointpos name="steering_angle_4" joint="steering_joint_4"/>
+    <jointvel name="steering_rate_1" joint="steering_joint_1"/>
+    <jointvel name="steering_rate_2" joint="steering_joint_2"/>
+    <jointvel name="steering_rate_3" joint="steering_joint_3"/>
+    <jointvel name="steering_rate_4" joint="steering_joint_4"/>
+
+    <jointvel name="wheel_rate_1" joint="wheel_joint_1"/>
+    <jointvel name="wheel_rate_2" joint="wheel_joint_2"/>
+    <jointvel name="wheel_rate_3" joint="wheel_joint_3"/>
+    <jointvel name="wheel_rate_4" joint="wheel_joint_4"/>
+  </sensor>
+</mujoco>

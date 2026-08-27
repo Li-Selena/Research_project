@@ -1,0 +1,18 @@
+# ROS 2 / colcon build artifacts
+**/build/
+**/install/
+**/log/
+
+# Local temporary and generated scratch files
+**/tmp/
+**/MUJOCO_LOG.TXT
+
+# Editor and Python caches
+**/.vscode/browse.vc.db*
+**/__pycache__/
+*.py[cod]
+
+# Native build artifacts
+*.o
+*.a
+*.so
