@@ -13,6 +13,7 @@ def generate_launch_description():
     inverse_parameters = package_share / "config" / "inverse_kinematics.yaml"
     mujoco_parameters = package_share / "config" / "mujoco_state.yaml"
     enable_viewer = LaunchConfiguration("enable_viewer")
+    model_path = LaunchConfiguration("model_path")
 
     return LaunchDescription(
         [
@@ -21,6 +22,11 @@ def generate_launch_description():
                 default_value="true",
                 description="Open the native MuJoCo GLFW viewer",
             ),
+            DeclareLaunchArgument(
+                "model_path",
+                default_value="/workspace/3Dmodel/offestWheel/MJCF/offset_steering_wheel.xml",
+                description="Absolute path to the offset-caster MJCF model",
+            ),
             Node(
                 package="offset_caster_mujoco_control",
                 executable="mujoco_state_node",
@@ -28,7 +34,10 @@ def generate_launch_description():
                 output="screen",
                 parameters=[
                     str(mujoco_parameters),
-                    {"enable_viewer": ParameterValue(enable_viewer, value_type=bool)},
+                    {
+                        "enable_viewer": ParameterValue(enable_viewer, value_type=bool),
+                        "model_path": ParameterValue(model_path, value_type=str),
+                    },
                 ],
             ),
             Node(
