@@ -5,6 +5,7 @@ ARG MUJOCO_SHA256=a9367911e6d5eaeade17c2197304687421c1fc932cdf7bcd4cb8cfaf0374dc
 
 RUN apt-get -o Acquire::Retries=5 -o Acquire::http::Timeout=30 update && \
     apt-get install -y --no-install-recommends \
+        fonts-noto-cjk \
         libglfw3-dev && \
     archive="/tmp/mujoco-${MUJOCO_VERSION}-linux-x86_64.tar.gz" && \
     url="https://github.com/google-deepmind/mujoco/releases/download/${MUJOCO_VERSION}/mujoco-${MUJOCO_VERSION}-linux-x86_64.tar.gz" && \

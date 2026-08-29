@@ -4,6 +4,12 @@ mujoco_state_node:
     publish_rate: 50.0
     command_timeout: 0.25
     enable_viewer: false
+    world_frame: world
+    base_frame: base_link
+    imu_frame: imu_link
+    orientation_variance: 1.0e-6
+    angular_velocity_variance: 1.0e-5
+    linear_acceleration_variance: 1.0e-4
 
     wheel_radius: 0.075
     caster_offset: 0.105

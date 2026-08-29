@@ -112,6 +112,24 @@ void test_uniform_speed_limit()
   }
 }
 
+void test_simultaneous_translation_and_rotation()
+{
+  const InverseKinematics kinematics(model_geometry(), 1000.0, 1000.0);
+  const auto command = kinematics.solve(
+    {0.30, 0.10, 0.40}, {0.15, -0.35, 0.80, -1.10});
+
+  bool has_steering_motion = false;
+  bool has_wheel_motion = false;
+  for (std::size_t i = 0; i < kCasterCount; ++i) {
+    has_steering_motion = has_steering_motion || std::abs(command.steering[i]) > 1.0e-6;
+    has_wheel_motion = has_wheel_motion || std::abs(command.wheel[i]) > 1.0e-6;
+  }
+  if (!has_steering_motion || !has_wheel_motion) {
+    throw std::runtime_error(
+            "Combined chassis twist must drive steering and wheel joints simultaneously");
+  }
+}
+
 }  // namespace
 
 int main()
@@ -122,6 +140,7 @@ int main()
     test_left_at_quarter_turn();
     test_paper_formula_conversion();
     test_uniform_speed_limit();
+    test_simultaneous_translation_and_rotation();
   } catch (const std::exception & error) {
     std::cerr << "Inverse kinematics test failed: " << error.what() << '\n';
     return EXIT_FAILURE;

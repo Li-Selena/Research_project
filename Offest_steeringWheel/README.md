@@ -94,7 +94,9 @@ MJCF 中的质量和惯量目前是可运行的初始估计值；如用于高精
 
 ```mermaid
 flowchart LR
-    A["键盘或上层控制器"] -->|"/cmd_vel"| B["inverse_kinematics_node"]
+    A["Qt界面或上层控制器"] -->|"/offset_caster/motion_command"| M["motion_controller_node"]
+    M -->|"/cmd_vel"| B["inverse_kinematics_node"]
+    K["键盘（高层控制未激活时）"] -->|"/cmd_vel"| B
     E["/joint_states 转向角反馈"] --> B
     B -->|"8 路关节速度指令"| C["mujoco_state_node"]
     C --> D["MuJoCo 执行器与 mj_step"]
@@ -141,14 +143,14 @@ flowchart LR
 ```bash
 cd /workspace
 source /opt/ros/jazzy/setup.bash
-colcon build --packages-select offset_caster_mujoco_control --symlink-install
+colcon build --symlink-install
 source install/setup.bash
 ```
 
 运行测试：
 
 ```bash
-colcon test --packages-select offset_caster_mujoco_control
+colcon test
 colcon test-result --verbose
 ```
 
@@ -168,11 +170,24 @@ ros2 launch offset_caster_mujoco_control simulation_control.launch.py \
   enable_viewer:=true
 ```
 
-该命令同时启动逆运动学节点和 MuJoCo 状态节点。若只需要无界面仿真，可设置：
+该命令同时启动 MuJoCo、逆运动学、六模式控制器、目标位置控制台和独立曲线监测窗口。
+若只需要无界面仿真，可设置：
 
 ```bash
 ros2 launch offset_caster_mujoco_control simulation_control.launch.py \
-  enable_viewer:=false
+  enable_viewer:=false \
+  enable_dashboard:=false \
+  enable_monitor:=false
+```
+
+两个 Qt 程序也可以分别单独启动：
+
+```bash
+# 目标位置控制台
+ros2 run offset_caster_dashboard offset_caster_dashboard
+
+# 独立曲线监测窗口
+ros2 run offset_caster_dashboard offset_caster_monitor
 ```
 
 原生环境或其他工作区路径下运行时，指定 MJCF 的绝对路径：
@@ -199,7 +214,23 @@ xhost -si:localuser:root
 
 ## 7. 如何操控
 
-### 7.1 键盘操控
+### 7.1 Qt 目标位置控制台
+
+完整 launch 默认打开独立 Qt 控制台。界面只负责设置世界坐标系目标位置：左侧选择
+位置模式并输入目标，中间同时绘制
+固定的世界坐标轴和随底盘 yaw 旋转的机器人坐标轴，右侧显示实时模式、高层命令、
+键盘或位置控制器最终下发的 `/cmd_vel`、控制误差和状态。
+
+| 模式 | `x/y` 含义 | Yaw 输入 |
+|---|---|---|
+| 世界位置 · 固定 Yaw | 世界系绝对 `x/y` | 全程保持的绝对 yaw |
+| 世界位置 · 动态 Yaw | 世界系绝对 `x/y` | 与位置进度同步到达的最终 yaw |
+
+“发送/保持”会以 20 Hz 维持当前命令；修改目标后再次发送会创建新的命令 ID。
+“停止”会立即向控制器发送停止命令。速度控制统一使用下一节的键盘终端；从位置控制
+切换到键盘前必须先点击“停止”，避免两个节点竞争 `/cmd_vel`。
+
+### 7.2 键盘操控
 
 保持仿真运行，在容器终端 2 中执行：
 
@@ -232,8 +263,16 @@ ros2 run teleop_twist_keyboard teleop_twist_keyboard \
 | `e` / `c` | 增大 / 减小角速度 |
 
 `teleop_twist_keyboard` 启动后也会在终端打印完整按键布局。终端窗口必须保持焦点才能接收按键。
+键盘产生的速度会直接显示在 Qt 控制台右侧的“实时 `/cmd_vel`”区域。
 
-### 7.2 直接发布速度指令
+### 7.3 独立曲线监测
+
+曲线监测不再嵌入目标位置控制台，而是作为独立窗口运行。它以 20 秒滚动窗口显示
+轨迹位置/Yaw 误差、四路舵角和四路轮速，并提供“暂停/继续”和“清空”操作。
+完整 launch 默认启动该窗口；也可通过 `enable_monitor:=false` 关闭，或使用
+`ros2 run offset_caster_dashboard offset_caster_monitor` 单独打开。
+
+### 7.4 直接发布速度指令
 
 也可以绕过键盘节点，直接以 20 Hz 发布 `/cmd_vel`。例如以 0.5 m/s 前进：
 
@@ -256,6 +295,16 @@ ros2 topic pub -r 20 /cmd_vel geometry_msgs/msg/Twist \
   "{linear: {x: 0.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.5}}"
 ```
 
+同时平移并旋转（用于验证组合运动，而不是分阶段执行）：
+
+```bash
+ros2 topic pub -r 20 /cmd_vel geometry_msgs/msg/Twist \
+  "{linear: {x: 0.3, y: 0.1, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.4}}"
+```
+
+运行时可同时观察 `/offset_caster/forward_velocity` 中非零的线速度和角速度，
+以及 `/odom` 中同时变化的位置与姿态。
+
 按 `Ctrl+C` 停止发布后，控制器会在超时期限内自动停车。
 
 ## 8. ROS 2 接口
@@ -263,11 +312,15 @@ ros2 topic pub -r 20 /cmd_vel geometry_msgs/msg/Twist \
 | 方向 | 话题 | 消息类型 | 用途 |
 |---|---|---|---|
 | 输入 | `/cmd_vel` | `geometry_msgs/msg/Twist` | 目标底盘速度 |
+| 输入 | `/offset_caster/motion_command` | `offset_caster_interfaces/msg/MotionCommand` | 六模式高层命令 |
 | 输入/反馈 | `/joint_states` | `sensor_msgs/msg/JointState` | 八个关节的位置与速度 |
 | 内部控制 | `/offset_caster/joint_velocity_command` | `trajectory_msgs/msg/JointTrajectory` | 八个关节的速度指令 |
 | 输出 | `/offset_caster/forward_velocity` | `geometry_msgs/msg/TwistStamped` | 正运动学解算的底盘速度 |
 | 输出 | `/offset_caster/forward_kinematics_residual` | `std_msgs/msg/Float64` | 正运动学均方根残差 |
 | 输出 | `/odom` | `nav_msgs/msg/Odometry` | MuJoCo 位姿与正运动学速度 |
+| 输出 | `/imu/data` | `sensor_msgs/msg/Imu` | 底盘中心IMU数据 |
+| 输出 | `/offset_caster/motion_status` | `offset_caster_interfaces/msg/MotionStatus` | 控制模式、误差和实时输出 |
+| 输出 | `/tf`、`/tf_static` | TF | `world → base_link → imu_link` 坐标关系 |
 | 输出 | `/clock` | `rosgraph_msgs/msg/Clock` | 仿真时间 |
 
 常用观察命令：
@@ -293,4 +346,12 @@ ros2 topic echo /odom
 - 当前系统面向 MuJoCo 仿真，尚未包含真实电机驱动器和硬件通信层。
 - `/odom` 的位姿来自 MuJoCo 真值，尚未实现纯轮式里程计的位置积分与漂移建模。
 - 质量、惯量、摩擦等参数需要根据实际样机标定。
-- 后续可接入 Nav2、轨迹跟踪器、真实编码器和底盘硬件接口，并增加 TF 发布、状态估计与滑移补偿。
+- IMU 当前使用理想仿真数据和配置协方差，不注入随机噪声。
+- 后续可接入 Nav2、轨迹跟踪器、真实编码器、状态估计与滑移补偿。
+
+## 11. 诊断与视频说明
+
+- [系统诊断、ROS 2节点图与TF树](docs/SYSTEM_DIAGNOSTICS.md)
+- [仿真视频分阶段运动模式说明](docs/VIDEO_RECORDING_GUIDE.md)
+
+独立曲线监测窗口可实时查看轨迹误差、四路舵角和四路轮速，适合直接用于实验验收和录屏讲解。

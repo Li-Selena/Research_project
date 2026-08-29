@@ -1,17 +1,22 @@
 #include "offset_caster_mujoco_control/forward_kinematics.hpp"
+#include "offset_caster_mujoco_control/mujoco_imu_reader.hpp"
 #include "offset_caster_mujoco_control/mujoco_state_reader.hpp"
 
 #include <GLFW/glfw3.h>
 
 #include <builtin_interfaces/msg/time.hpp>
 #include <geometry_msgs/msg/twist_stamped.hpp>
+#include <geometry_msgs/msg/transform_stamped.hpp>
 #include <mujoco/mujoco.h>
 #include <nav_msgs/msg/odometry.hpp>
 #include <rclcpp/rclcpp.hpp>
 #include <rosgraph_msgs/msg/clock.hpp>
 #include <sensor_msgs/msg/joint_state.hpp>
+#include <sensor_msgs/msg/imu.hpp>
 #include <std_msgs/msg/float64.hpp>
 #include <trajectory_msgs/msg/joint_trajectory.hpp>
+#include <tf2_ros/static_transform_broadcaster.hpp>
+#include <tf2_ros/transform_broadcaster.hpp>
 
 #include <algorithm>
 #include <array>
@@ -43,11 +48,27 @@ public:
     publish_rate_ = declare_parameter<double>("publish_rate", 50.0);
     command_timeout_ = declare_parameter<double>("command_timeout", 0.25);
     enable_viewer_ = declare_parameter<bool>("enable_viewer", false);
+    world_frame_ = declare_parameter<std::string>("world_frame", "world");
+    base_frame_ = declare_parameter<std::string>("base_frame", "base_link");
+    imu_frame_ = declare_parameter<std::string>("imu_frame", "imu_link");
+    orientation_variance_ = declare_parameter<double>("orientation_variance", 1.0e-6);
+    angular_velocity_variance_ = declare_parameter<double>("angular_velocity_variance", 1.0e-5);
+    linear_acceleration_variance_ = declare_parameter<double>(
+      "linear_acceleration_variance", 1.0e-4);
     if (!std::isfinite(publish_rate_) || publish_rate_ <= 0.0) {
       throw std::invalid_argument("publish_rate must be finite and positive");
     }
     if (!std::isfinite(command_timeout_) || command_timeout_ <= 0.0) {
       throw std::invalid_argument("command_timeout must be finite and positive");
+    }
+    if (world_frame_.empty() || base_frame_.empty() || imu_frame_.empty()) {
+      throw std::invalid_argument("Coordinate frame names must not be empty");
+    }
+    if (!std::isfinite(orientation_variance_) || orientation_variance_ < 0.0 ||
+      !std::isfinite(angular_velocity_variance_) || angular_velocity_variance_ < 0.0 ||
+      !std::isfinite(linear_acceleration_variance_) || linear_acceleration_variance_ < 0.0)
+    {
+      throw std::invalid_argument("IMU covariance variances must be finite and non-negative");
     }
 
     const double wheel_radius = declare_parameter<double>("wheel_radius", 0.075);
@@ -85,9 +106,12 @@ public:
     load_model(model_path);
     configure_actuators(steering_actuator_names, wheel_actuator_names);
     base_body_id_ = require_named_object(mjOBJ_BODY, "base");
+    imu_site_id_ = require_named_object(mjOBJ_SITE, "imu_site");
 
     state_reader_ = std::make_unique<MujocoStateReader>(
       model_.get(), steering_joint_names_, wheel_joint_names_);
+    imu_reader_ = std::make_unique<MujocoImuReader>(
+      model_.get(), "imu_orientation", "base_angular_velocity", "base_linear_acceleration");
     forward_kinematics_ = std::make_unique<ForwardKinematics>(geometry_);
 
     joint_state_publisher_ = create_publisher<sensor_msgs::msg::JointState>("/joint_states", 10);
@@ -96,11 +120,17 @@ public:
     residual_publisher_ = create_publisher<std_msgs::msg::Float64>(
       "/offset_caster/forward_kinematics_residual", 10);
     odometry_publisher_ = create_publisher<nav_msgs::msg::Odometry>("/odom", 10);
+    imu_publisher_ = create_publisher<sensor_msgs::msg::Imu>(
+      "/imu/data", rclcpp::SensorDataQoS());
     clock_publisher_ = create_publisher<rosgraph_msgs::msg::Clock>(
       "/clock", rclcpp::QoS(1).best_effort());
     command_subscription_ = create_subscription<trajectory_msgs::msg::JointTrajectory>(
       "/offset_caster/joint_velocity_command", 10,
       std::bind(&MujocoStateNode::command_callback, this, std::placeholders::_1));
+    transform_broadcaster_ = std::make_unique<tf2_ros::TransformBroadcaster>(*this);
+    static_transform_broadcaster_ =
+      std::make_unique<tf2_ros::StaticTransformBroadcaster>(*this);
+    publish_static_imu_transform();
 
     last_publish_time_ = -1.0 / publish_rate_;
     if (enable_viewer_) {
@@ -286,6 +316,7 @@ private:
   void publish_state()
   {
     const auto caster_states = state_reader_->read(data_.get());
+    const auto imu_state = imu_reader_->read(data_.get());
     const auto forward_result = forward_kinematics_->solve(caster_states);
     const auto stamp = simulation_stamp();
 
@@ -308,7 +339,7 @@ private:
 
     geometry_msgs::msg::TwistStamped forward_velocity;
     forward_velocity.header.stamp = stamp;
-    forward_velocity.header.frame_id = "base";
+    forward_velocity.header.frame_id = base_frame_;
     forward_velocity.twist.linear.x = forward_result.twist.linear_x;
     forward_velocity.twist.linear.y = forward_result.twist.linear_y;
     forward_velocity.twist.angular.z = forward_result.twist.angular_z;
@@ -320,8 +351,8 @@ private:
 
     nav_msgs::msg::Odometry odometry;
     odometry.header.stamp = stamp;
-    odometry.header.frame_id = "odom";
-    odometry.child_frame_id = "base";
+    odometry.header.frame_id = world_frame_;
+    odometry.child_frame_id = base_frame_;
     odometry.pose.pose.position.x = data_->xpos[3 * base_body_id_];
     odometry.pose.pose.position.y = data_->xpos[3 * base_body_id_ + 1];
     odometry.pose.pose.position.z = data_->xpos[3 * base_body_id_ + 2];
@@ -333,6 +364,59 @@ private:
     odometry.twist.twist.linear.y = forward_result.twist.linear_y;
     odometry.twist.twist.angular.z = forward_result.twist.angular_z;
     odometry_publisher_->publish(odometry);
+
+    sensor_msgs::msg::Imu imu;
+    imu.header.stamp = stamp;
+    imu.header.frame_id = imu_frame_;
+    imu.orientation.w = imu_state.orientation_wxyz[0];
+    imu.orientation.x = imu_state.orientation_wxyz[1];
+    imu.orientation.y = imu_state.orientation_wxyz[2];
+    imu.orientation.z = imu_state.orientation_wxyz[3];
+    imu.angular_velocity.x = imu_state.angular_velocity[0];
+    imu.angular_velocity.y = imu_state.angular_velocity[1];
+    imu.angular_velocity.z = imu_state.angular_velocity[2];
+    imu.linear_acceleration.x = imu_state.linear_acceleration[0];
+    imu.linear_acceleration.y = imu_state.linear_acceleration[1];
+    imu.linear_acceleration.z = imu_state.linear_acceleration[2];
+    imu.orientation_covariance[0] = orientation_variance_;
+    imu.orientation_covariance[4] = orientation_variance_;
+    imu.orientation_covariance[8] = orientation_variance_;
+    imu.angular_velocity_covariance[0] = angular_velocity_variance_;
+    imu.angular_velocity_covariance[4] = angular_velocity_variance_;
+    imu.angular_velocity_covariance[8] = angular_velocity_variance_;
+    imu.linear_acceleration_covariance[0] = linear_acceleration_variance_;
+    imu.linear_acceleration_covariance[4] = linear_acceleration_variance_;
+    imu.linear_acceleration_covariance[8] = linear_acceleration_variance_;
+    imu_publisher_->publish(imu);
+
+    geometry_msgs::msg::TransformStamped transform;
+    transform.header.stamp = stamp;
+    transform.header.frame_id = world_frame_;
+    transform.child_frame_id = base_frame_;
+    transform.transform.translation.x = odometry.pose.pose.position.x;
+    transform.transform.translation.y = odometry.pose.pose.position.y;
+    transform.transform.translation.z = odometry.pose.pose.position.z;
+    transform.transform.rotation = odometry.pose.pose.orientation;
+    transform_broadcaster_->sendTransform(transform);
+  }
+
+  void publish_static_imu_transform()
+  {
+    if (model_->site_bodyid[imu_site_id_] != base_body_id_) {
+      throw std::runtime_error("imu_site must be attached directly to the base body");
+    }
+    geometry_msgs::msg::TransformStamped transform;
+    transform.header.stamp = now();
+    transform.header.frame_id = base_frame_;
+    transform.child_frame_id = imu_frame_;
+    transform.transform.translation.x = model_->site_pos[3 * imu_site_id_];
+    transform.transform.translation.y = model_->site_pos[3 * imu_site_id_ + 1];
+    transform.transform.translation.z = model_->site_pos[3 * imu_site_id_ + 2];
+    transform.transform.rotation.w = model_->site_quat[4 * imu_site_id_];
+    transform.transform.rotation.x = model_->site_quat[4 * imu_site_id_ + 1];
+    transform.transform.rotation.y = model_->site_quat[4 * imu_site_id_ + 2];
+    transform.transform.rotation.z = model_->site_quat[4 * imu_site_id_ + 3];
+    static_transform_broadcaster_->sendTransform(transform);
   }
 
   void initialize_viewer()
@@ -384,6 +468,7 @@ private:
   std::unique_ptr<mjModel, decltype(&mj_deleteModel)> model_;
   std::unique_ptr<mjData, decltype(&mj_deleteData)> data_;
   std::unique_ptr<MujocoStateReader> state_reader_;
+  std::unique_ptr<MujocoImuReader> imu_reader_;
   std::unique_ptr<ForwardKinematics> forward_kinematics_;
   std::array<CasterGeometry, kCasterCount> geometry_{};
   std::array<std::string, kCasterCount> steering_joint_names_{};
@@ -391,9 +476,16 @@ private:
   std::array<std::string, kCommandCount> command_joint_names_{};
   std::array<int, kCommandCount> actuator_control_addresses_{};
   int base_body_id_{-1};
+  int imu_site_id_{-1};
   double publish_rate_{50.0};
   double command_timeout_{0.25};
   double last_publish_time_{0.0};
+  double orientation_variance_{1.0e-6};
+  double angular_velocity_variance_{1.0e-5};
+  double linear_acceleration_variance_{1.0e-4};
+  std::string world_frame_{"world"};
+  std::string base_frame_{"base_link"};
+  std::string imu_frame_{"imu_link"};
 
   std::mutex command_mutex_;
   std::array<double, kCommandCount> target_joint_velocities_{};
@@ -413,8 +505,11 @@ private:
   rclcpp::Publisher<geometry_msgs::msg::TwistStamped>::SharedPtr forward_velocity_publisher_;
   rclcpp::Publisher<std_msgs::msg::Float64>::SharedPtr residual_publisher_;
   rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr odometry_publisher_;
+  rclcpp::Publisher<sensor_msgs::msg::Imu>::SharedPtr imu_publisher_;
   rclcpp::Publisher<rosgraph_msgs::msg::Clock>::SharedPtr clock_publisher_;
   rclcpp::Subscription<trajectory_msgs::msg::JointTrajectory>::SharedPtr command_subscription_;
+  std::unique_ptr<tf2_ros::TransformBroadcaster> transform_broadcaster_;
+  std::unique_ptr<tf2_ros::StaticTransformBroadcaster> static_transform_broadcaster_;
 };
 
 }  // namespace offset_caster_mujoco_control

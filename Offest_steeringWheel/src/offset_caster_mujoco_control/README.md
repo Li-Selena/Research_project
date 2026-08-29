@@ -5,11 +5,15 @@ ROS 2 Jazzy C++ package for keyboard control of the four powered-caster MuJoCo m
 ## Data flow
 
 ```text
-teleop_twist_keyboard (/cmd_vel)
+offset_caster_dashboard (world-position /offset_caster/motion_command)
+  -> motion_controller_node (/cmd_vel)
   -> inverse_kinematics_node
   -> /offset_caster/joint_velocity_command
   -> mujoco_state_node (data.ctrl, mj_step)
   -> /joint_states
+  -> inverse_kinematics_node
+
+teleop_twist_keyboard (/cmd_vel)
   -> inverse_kinematics_node
 
 mujoco_state_node
@@ -17,15 +21,24 @@ mujoco_state_node
   -> /offset_caster/forward_kinematics_residual
   -> /odom
   -> /clock
+  -> /imu/data
+  -> world -> base_link -> imu_link TF
+
+motion_controller_node
+  -> /offset_caster/motion_status
+
+offset_caster_curve_monitor
+  <- /offset_caster/motion_status
+  <- /joint_states
 ```
 
 ## Build inside the Dev Container
 
 ```bash
 cd /workspace
-colcon build --packages-select offset_caster_mujoco_control --symlink-install
+colcon build --symlink-install
 source install/setup.bash
-colcon test --packages-select offset_caster_mujoco_control
+colcon test
 colcon test-result --verbose
 ```
 
@@ -35,8 +48,14 @@ Start the controller and MuJoCo viewer:
 
 ```bash
 ros2 launch offset_caster_mujoco_control simulation_control.launch.py \
-  enable_viewer:=true
+  enable_viewer:=true \
+  enable_dashboard:=true \
+  enable_monitor:=true
 ```
+
+The position dashboard and curve monitor are independent Qt programs. They can also be started
+separately with `ros2 run offset_caster_dashboard offset_caster_dashboard` and
+`ros2 run offset_caster_dashboard offset_caster_monitor`.
 
 In a second terminal, start the standard ROS 2 keyboard node:
 

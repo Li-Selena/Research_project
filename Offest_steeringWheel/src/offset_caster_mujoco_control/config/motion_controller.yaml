@@ -1,0 +1,15 @@
+motion_controller_node:
+  ros__parameters:
+    update_rate: 50.0
+    command_timeout: 0.5
+    state_timeout: 0.5
+    max_linear_speed: 0.5
+    max_angular_speed: 0.8
+    max_linear_acceleration: 1.0
+    max_angular_acceleration: 2.0
+    position_gain: 1.0
+    yaw_gain: 2.0
+    yaw_rate_damping: 0.15
+    position_tolerance: 0.03
+    yaw_tolerance: 0.03
+    reached_dwell_time: 0.2

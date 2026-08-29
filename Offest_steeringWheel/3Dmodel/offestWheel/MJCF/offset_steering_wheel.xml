@@ -211,6 +211,7 @@
   <sensor>
     <framepos name="base_position" objtype="body" objname="base"/>
     <framequat name="base_orientation" objtype="body" objname="base"/>
+    <framequat name="imu_orientation" objtype="site" objname="imu_site"/>
     <gyro name="base_angular_velocity" site="imu_site"/>
     <accelerometer name="base_linear_acceleration" site="imu_site"/>
 
