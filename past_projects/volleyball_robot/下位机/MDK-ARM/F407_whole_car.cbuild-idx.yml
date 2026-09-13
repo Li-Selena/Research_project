@@ -1,0 +1,22 @@
+build-idx:
+  generated-by: csolution version 2.12.0+p41-gfeadfc5e
+  csolution: F407_whole_car.csolution.yml
+  cbuild-run: out/F407_whole_car+F407_whole_car.cbuild-run.yml
+  tmpdir: tmp
+  cprojects:
+    - cproject: F407_whole_car.cproject.yml
+  cbuilds:
+    - cbuild: out/F407_whole_car/F407_whole_car/F407_whole_car+F407_whole_car.cbuild.yml
+      project: F407_whole_car
+      configuration: +F407_whole_car
+      messages:
+        warnings:
+          - no compiler registered. Add path to compiler 'bin' directory with environment variable <name>_TOOLCHAIN_<major>_<minor>_<patch>. <name> is one of AC6, GCC, IAR, CLANG
+          - file 'E:/Volleyball_Robot/R2_main_test/MDK-ARM/.cmsis/F407_whole_car+F407_whole_car.dbgconf' not found; use --update-rte
+        info:
+          - F407_whole_car.cbuild-pack.yml - file generated successfully
+          - F407_whole_car+F407_whole_car.cbuild-run.yml - file generated successfully
+          - F407_whole_car+F407_whole_car.cbuild.yml - file generated successfully
+      packs-unused:
+        - pack: ARM::CMSIS-DSP@1.16.2
+        - pack: ARM::CMSIS-NN@4.1.0

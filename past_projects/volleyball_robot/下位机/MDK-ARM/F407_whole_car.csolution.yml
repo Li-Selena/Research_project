@@ -1,0 +1,10 @@
+solution:
+  created-by: uv2csolution@1.6.0
+  created-for: CMSIS-Toolbox@2.7.0
+  compiler: AC6
+  target-types:
+    - type: F407_whole_car
+      device: STM32F407ZETx
+      optimize: debug
+  projects:
+    - project: F407_whole_car.cproject.yml

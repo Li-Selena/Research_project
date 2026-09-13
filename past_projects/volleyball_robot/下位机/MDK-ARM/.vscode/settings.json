@@ -1,0 +1,5 @@
+{
+    "clangd.arguments": [
+        "--compile-commands-dir=e:\\Volleyball_Robot\\R2_main_test\\MDK-ARM\\out\\F407_whole_car\\F407_whole_car"
+    ]
+}
