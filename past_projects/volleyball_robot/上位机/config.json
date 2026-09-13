@@ -1,0 +1,34 @@
+{
+  "communication": {
+    "serial_port": null,
+    "baudrate": 115200,
+    "timeout_s": 0.1,
+    "retries": 2
+  },
+  "vision": {
+    "main_camera_id": 0,
+    "delta_camera_id": 2,
+    "main_model": "model/best24v8n_1536.pt",
+    "delta_model": "model/best_delta1v8n.pt",
+    "main_calibration": "model/camera6",
+    "delta_calibration": "model/camera3_135",
+    "ball_radius_mm": 120.0,
+    "main_camera_translation_mm": [0.0, 113.0, 925.0],
+    "main_camera_rotation_deg": 0.0,
+    "show_overlay": true
+  },
+  "control": {
+    "default_striker": "delta",
+    "stay_distance_mm": 0.0,
+    "track_distance_mm": 3000.0,
+    "track_y_distance_mm": 2500.0,
+    "delta_detection_mm": 2000.0,
+    "delta_track_distance_mm": 1500.0,
+    "main_strike_distance_mm": 750.0,
+    "delta_strike_distance_mm": 500.0,
+    "main_strike_speed_coefficient": 0.7,
+    "delta_strike_speed_coefficient": 0.9,
+    "delta_strike_xyz_mm": [0.0, 0.0, 400.0],
+    "delta_strike_timeout_ms": 300
+  }
+}
