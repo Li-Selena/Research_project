@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>r2_mission</name>
+  <version>0.1.0</version>
+  <description>Coordinate Nav2, R2 terrain traversal and object picking.</description>
+  <maintainer email="maintainers@example.com">vo2 contributors</maintainer>
+  <license>LicenseRef-Unknown</license>
+
+  <depend>rclpy</depend>
+  <depend>action_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>msg_interface</depend>
+  <depend>nav2_msgs</depend>
+
+  <test_depend>ament_flake8</test_depend>
+  <test_depend>ament_pep257</test_depend>
+  <test_depend>ament_xmllint</test_depend>
+  <test_depend>python3-pytest</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>

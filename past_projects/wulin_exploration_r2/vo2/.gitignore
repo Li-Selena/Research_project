@@ -1,0 +1,20 @@
+# ROS 2 / colcon output
+build/
+install/
+log/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.coverage
+
+# Editors and local configuration
+.idea/
+.vscode/
+*.swp
+
+# Local camera calibration
+src/pnp_solve/config/calibration.yaml
+src/pnp_solve/config/pnp.yaml

@@ -1,0 +1,13 @@
+# Named commands are documented in robot_serial_bridge/CONTROL.md.
+# Arm: mm; chassis: m, m/s, rad, rad/s; unused values must be omitted.
+string command
+float64[] values
+# Required for finite-duration velocity; ignored by other commands.
+float64 duration_s
+# Zero selects the per-command default timeout.
+float64 timeout_s
+---
+# Accepted by the bridge, NOT a firmware acknowledgement or completion.
+bool accepted
+uint32 request_id
+string message

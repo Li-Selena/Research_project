@@ -1,0 +1,21 @@
+pnp_solve_node:
+  ros__parameters:
+    # Output is consumed as the mechanical-arm base frame by the serial bridge.
+    base_frame_id: arm_base_link
+    target_radius_m: 0.12
+    target_class_name: ''
+    minimum_confidence: 0.25
+
+    # Position of the camera origin in arm_base_link, expressed in FLU metres.
+    camera_to_base_xyz_m: [0.0, 0.0, 0.0]
+
+    # Camera mounting correction after optical-to-FLU axis conversion.
+    # Rotation order is Rz(yaw) * Ry(pitch) * Rx(roll), in degrees.
+    camera_mount_rpy_deg: [0.0, 0.0, 0.0]
+
+    distance_scale: 1.0
+    distance_offset_m: 0.0
+    nominal_dt: 0.0333333333
+    max_prediction_frames: 10
+    process_noise: 0.5
+    measurement_noise: 0.01

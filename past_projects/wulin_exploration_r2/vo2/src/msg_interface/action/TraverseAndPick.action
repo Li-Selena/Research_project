@@ -1,0 +1,26 @@
+# Optional map-frame pose before the terrain sequence.
+bool navigate_to_terrain
+geometry_msgs/PoseStamped terrain_pose
+# none, up or down
+string terrain_action
+# Optional map-frame pose that leaves the target inside the arm workspace.
+bool navigate_to_pickup
+geometry_msgs/PoseStamped pickup_pose
+# gripper or suction
+string tool
+float32 navigation_timeout_s
+float32 target_timeout_s
+uint16 stable_samples
+float32 stable_tolerance_m
+# Pre-grasp and retreat offsets in arm_base_link FLU coordinates.
+float32 pregrasp_backoff_m
+float32 pregrasp_lift_m
+float32 grasp_forward_offset_m
+float32 retreat_backoff_m
+float32 retreat_lift_m
+---
+bool success
+string detail
+---
+string phase
+string detail
