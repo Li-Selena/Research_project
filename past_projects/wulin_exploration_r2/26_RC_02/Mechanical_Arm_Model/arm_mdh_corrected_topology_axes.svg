@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1220" height="790" viewBox="0 0 1220 790">
+  <defs>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#c62828"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2e7d32"/>
+    </marker>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#1565c0"/>
+    </marker>
+    <marker id="arrowDim" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#546e7a"/>
+    </marker>
+    <style>
+      .title { font-family: Arial, Helvetica, sans-serif; font-size: 24px; font-weight: 700; fill: #263238; }
+      .label { font-family: Arial, Helvetica, sans-serif; font-size: 15px; fill: #263238; }
+      .small { font-family: Arial, Helvetica, sans-serif; font-size: 13px; fill: #455a64; }
+      .mono { font-family: Consolas, "Courier New", monospace; font-size: 13px; fill: #37474f; }
+      .note { font-family: Arial, Helvetica, sans-serif; font-size: 13px; fill: #607d8b; }
+      .grid { stroke: #d8e2e8; stroke-width: 1; }
+      .panel { fill: #ffffff; stroke: #cfd8dc; stroke-width: 1.4; }
+      .axisLine { stroke: #607d8b; stroke-width: 1.5; stroke-dasharray: 7 5; }
+      .offset { stroke: #1e6091; stroke-width: 3; fill: none; marker-end: url(#arrowBlue); }
+      .component { stroke: #1e6091; stroke-width: 1.6; fill: none; stroke-dasharray: 6 5; }
+      .link { stroke: #ef6c00; stroke-width: 7; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .chord { stroke: #78909c; stroke-width: 2; fill: none; stroke-dasharray: 8 6; }
+      .dim { stroke: #546e7a; stroke-width: 1.6; fill: none; marker-start: url(#arrowDim); marker-end: url(#arrowDim); }
+      .joint { fill: #ffffff; stroke: #263238; stroke-width: 2.4; }
+      .mdhPoint { fill: #e8f4ff; stroke: #1565c0; stroke-width: 2.2; }
+      .vertex { fill: #fff4e5; stroke: #ef6c00; stroke-width: 2; }
+      .axisX { stroke: #c62828; stroke-width: 2.5; marker-end: url(#arrowRed); }
+      .axisY { stroke: #2e7d32; stroke-width: 2.5; marker-end: url(#arrowGreen); }
+      .axisZ { stroke: #1565c0; stroke-width: 2.5; marker-end: url(#arrowBlue); }
+      .axis4 { stroke-dasharray: 5 4; }
+      .xText { fill: #c62828; font-family: Consolas, "Courier New", monospace; font-size: 13px; font-weight: 700; }
+      .yText { fill: #2e7d32; font-family: Consolas, "Courier New", monospace; font-size: 13px; font-weight: 700; }
+      .zText { fill: #1565c0; font-family: Consolas, "Courier New", monospace; font-size: 13px; font-weight: 700; }
+      .outPos { fill: #ffffff; stroke-width: 2.1; }
+      .outNeg { fill: #ffffff; stroke-width: 2.1; }
+      .outX { stroke: #c62828; }
+      .outY { stroke: #2e7d32; }
+      .outZ { stroke: #1565c0; }
+      .dotX { fill: #c62828; }
+      .dotY { fill: #2e7d32; }
+      .dotZ { fill: #1565c0; }
+      .crossX { stroke: #c62828; stroke-width: 2; }
+      .crossY { stroke: #2e7d32; stroke-width: 2; }
+      .crossZ { stroke: #1565c0; stroke-width: 2; }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="1220" height="790" fill="#fbfdff"/>
+  <text x="36" y="42" class="title">Corrected Craig-MDH Topology, Power-On Zero</text>
+  <text x="36" y="66" class="small">XZ side view: +X0 is right on the page, +Z0 is up. Dot-in-circle means -Y0 out of page.</text>
+
+  <!-- Transform:
+       screen_x = 160 + 1.2 * Y_mm
+       screen_y = 700 - 1.2 * Z_mm
+
+       J1 physical = (0, 0, 0)          -> (160.00, 700.00)
+       O1_mdh      = (0, 0, 98.18)     -> (160.00, 582.18)
+       J2          = (0, 42.64, 98.18) -> (211.17, 582.18)
+       J3/J4       = (0, 42.64, 482.109445) -> (211.17, 121.47)
+       convex V    = (0, -1.312671, 365.572476) -> (158.42, 261.31)
+  -->
+
+  <g opacity="0.74">
+    <line x1="160" y1="700" x2="480" y2="700" class="grid"/>
+    <line x1="160" y1="580" x2="480" y2="580" class="grid"/>
+    <line x1="160" y1="460" x2="480" y2="460" class="grid"/>
+    <line x1="160" y1="340" x2="480" y2="340" class="grid"/>
+    <line x1="160" y1="220" x2="480" y2="220" class="grid"/>
+    <line x1="160" y1="100" x2="480" y2="100" class="grid"/>
+    <line x1="160" y1="700" x2="160" y2="86" class="grid"/>
+    <line x1="280" y1="700" x2="280" y2="86" class="grid"/>
+    <line x1="400" y1="700" x2="400" y2="86" class="grid"/>
+  </g>
+
+  <!-- World axes at physical J1. -->
+  <line x1="160" y1="700" x2="484" y2="700" class="axisY"/>
+  <line x1="160" y1="700" x2="160" y2="84" class="axisZ"/>
+  <circle cx="127" cy="674" r="14" class="outPos outX"/>
+  <circle cx="127" cy="674" r="4" class="dotX"/>
+  <text x="490" y="705" class="yText">+X0 forward</text>
+  <text x="135" y="82" class="zText">+Z0 up</text>
+  <text x="92" y="657" class="xText">-Y0 out</text>
+
+  <!-- Physical arm topology. -->
+  <path d="M 160.00 700.00 L 211.17 582.18" class="offset"/>
+  <path d="M 160.00 700.00 L 211.17 700.00 L 211.17 582.18" class="component"/>
+  <path d="M 211.17 582.18 L 211.17 121.47" class="chord"/>
+  <path d="M 211.17 582.18 L 158.42 261.31 L 211.17 121.47" class="link"/>
+  <circle cx="158.42" cy="261.31" r="7" class="vertex"/>
+
+  <circle cx="160.00" cy="700.00" r="9" class="joint"/>
+  <circle cx="160.00" cy="582.18" r="8" class="mdhPoint"/>
+  <circle cx="211.17" cy="582.18" r="10" class="joint"/>
+  <circle cx="211.17" cy="121.47" r="11" class="joint"/>
+
+  <text x="112" y="724" class="label">J1 physical</text>
+  <text x="104" y="567" class="label">O1_mdh</text>
+  <text x="223" y="588" class="label">J2 / frame 2</text>
+  <text x="223" y="128" class="label">J3/J4 / frames 3,4</text>
+  <text x="24" y="266" class="small">convex link vertex</text>
+  <text x="222" y="655" class="mono">J2 offset: X=42.64, Z=98.18</text>
+
+  <!-- Strict common-normal hints. -->
+  <line x1="160.00" y1="582.18" x2="211.17" y2="582.18" class="axisLine"/>
+  <text x="165" y="563" class="mono">x1 common normal = +X0</text>
+  <line x1="160.00" y1="700.00" x2="160.00" y2="582.18" class="axisLine"/>
+  <text x="82" y="638" class="mono">lift on z1</text>
+
+  <!-- Dimensions. -->
+  <path d="M 181 582.18 L 181 121.47" class="dim"/>
+  <text x="76" y="358" class="mono" transform="rotate(-90 76 358)">J2-J3 chord = 383.929445 mm</text>
+  <path d="M 197 575 L 165 278" class="dim"/>
+  <text x="38" y="420" class="mono">270.98076211</text>
+  <path d="M 162 244 L 202 132" class="dim"/>
+  <text x="84" y="198" class="mono">124.55</text>
+
+  <!-- Frame 1 axes at O1_mdh: x1=+X0, y1=+Y0, z1=+Z0. -->
+  <line x1="160" y1="582.18" x2="246" y2="582.18" class="axisX"/>
+  <line x1="160" y1="582.18" x2="160" y2="496.18" class="axisZ"/>
+  <circle cx="136" cy="613" r="13" class="outNeg outY"/>
+  <line x1="127" y1="604" x2="145" y2="622" class="crossY"/>
+  <line x1="145" y1="604" x2="127" y2="622" class="crossY"/>
+  <text x="251" y="587" class="xText">X1=+X0</text>
+  <text x="165" y="493" class="zText">Z1=+Z0</text>
+  <text x="96" y="635" class="yText">Y1=+Y0</text>
+
+  <!-- Frame 2 axes at J2: x2=+Z0, y2=-X0, z2=-Y0. -->
+  <line x1="203" y1="582.18" x2="203" y2="496.18" class="axisX"/>
+  <line x1="211.17" y1="582.18" x2="125.17" y2="582.18" class="axisY"/>
+  <circle cx="188" cy="613" r="13" class="outPos outZ"/>
+  <circle cx="188" cy="613" r="4" class="dotZ"/>
+  <text x="181" y="493" class="xText">X2=+Z0</text>
+  <text x="76" y="587" class="yText">Y2=-X0</text>
+  <text x="153" y="635" class="zText">Z2=-Y0</text>
+
+  <!-- Frame 3 axes at J3: x3=-X0, y3=-Z0, z3=-Y0. -->
+  <line x1="211.17" y1="121.47" x2="125.17" y2="121.47" class="axisX"/>
+  <line x1="219" y1="121.47" x2="219" y2="207.47" class="axisY"/>
+  <circle cx="185" cy="153" r="13" class="outPos outZ"/>
+  <circle cx="185" cy="153" r="4" class="dotZ"/>
+  <text x="76" y="126" class="xText">X3=-X0</text>
+  <text x="224" y="222" class="yText">Y3=-Z0</text>
+  <text x="150" y="174" class="zText">Z3=-Y0</text>
+
+  <!-- Frame 4 axes, visually offset from J3 but same origin: x4=-Y0, y4=+X0, z4=+Z0 at zero. -->
+  <circle cx="260" cy="153" r="13" class="outPos outX"/>
+  <circle cx="260" cy="153" r="4" class="dotX"/>
+  <line x1="230" y1="121.47" x2="316" y2="121.47" class="axisY axis4"/>
+  <line x1="239" y1="121.47" x2="239" y2="35.47" class="axisZ axis4"/>
+  <text x="270" y="174" class="xText">X4=-Y0</text>
+  <text x="321" y="126" class="yText">Y4=+X0</text>
+  <text x="245" y="32" class="zText">Z4=+Z0</text>
+  <text x="266" y="194" class="mono">frame 4 follows theta3</text>
+
+  <!-- Side panel. -->
+  <rect x="620" y="96" width="548" height="604" rx="6" class="panel"/>
+  <text x="646" y="130" class="label">MDH axis check</text>
+  <text x="646" y="164" class="mono">z1=+Z0, x1=+X0</text>
+  <text x="646" y="188" class="mono">z2=-Y0, x2=+Z0</text>
+  <text x="646" y="212" class="mono">z3=-Y0, x3=-X0</text>
+  <text x="646" y="236" class="mono">z4=+Z0, x4=-Y0</text>
+
+  <text x="646" y="284" class="label">Common-normal verification, Craig-MDH</text>
+  <text x="646" y="318" class="mono">x1 is normal to z1(+Z0) and z2(-Y0): OK</text>
+  <text x="646" y="342" class="mono">x2 connects parallel z2/z3 axes along +Z0: OK</text>
+  <text x="646" y="366" class="mono">x3 is normal to z3(-Y0) and z4(+Z0): OK</text>
+  <text x="646" y="390" class="mono">x3 = z3 cross z4 = -Y0 cross Z0 = -X0</text>
+
+  <text x="646" y="438" class="label">Important origin note</text>
+  <text x="646" y="472" class="mono">For strict MDH, O1_mdh is placed on z1 at Z=98.18.</text>
+  <text x="646" y="496" class="mono">The physical joint1 center remains J1=(0,0,0).</text>
+  <text x="646" y="520" class="mono">This separates physical topology from MDH frame placement.</text>
+
+  <text x="646" y="568" class="label">Tool frame</text>
+  <text x="646" y="602" class="mono">J4 origin coincides with J3.</text>
+  <text x="646" y="626" class="mono">At zero: X4=-Y0, Y4=+X0, Z4=+Z0.</text>
+  <text x="646" y="650" class="mono">After motion, frame 4 follows joint3 rotation.</text>
+
+  <text x="36" y="752" class="note">This diagram reflects the corrected zero-pose axis constraints. It intentionally shows O1_mdh separately from the physical joint1 center to satisfy strict MDH common-normal placement.</text>
+</svg>

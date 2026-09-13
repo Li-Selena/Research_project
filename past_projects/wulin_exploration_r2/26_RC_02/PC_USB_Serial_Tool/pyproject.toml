@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "robot-usb-serial-tool"
+version = "0.1.0"
+description = "VSCode serial tool for the robot USB control protocol."
+requires-python = ">=3.9"
+dependencies = ["pyserial>=3.5"]
+
+[project.scripts]
+robot-serial-tool = "serial_tool.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["serial_tool*"]

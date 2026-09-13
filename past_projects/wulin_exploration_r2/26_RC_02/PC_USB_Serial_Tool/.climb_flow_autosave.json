@@ -1,0 +1,55 @@
+{
+  "type": "r2_climb_debug_flow",
+  "version": 1,
+  "name": "climb_flow",
+  "created_at": null,
+  "step_count": 0,
+  "steps": [],
+  "autosave": true,
+  "autosaved_at": "2026-07-05 08:30:38",
+  "last_flow_candidate": {
+    "command": "CLIMB_TEST_ACTION",
+    "action_id": 1,
+    "action_name": "ALL_LEGS_220",
+    "values": [
+      1.0
+    ],
+    "wait": true,
+    "timeout_s": 5.0,
+    "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+    "result": {
+      "state": 0,
+      "state_name": "IDLE",
+      "state_done": false,
+      "error_flags": {
+        "timeout": false,
+        "param_not_configured": false,
+        "test_action": false,
+        "flow_switch": false
+      },
+      "elapsed_ms": 147,
+      "test_action": 1,
+      "test_action_name": "ALL_LEGS_220",
+      "leg_pos_mm": [
+        -19.09201431274414,
+        -19.165307998657227,
+        -18.511051177978516,
+        -19.132972717285156
+      ],
+      "leg_target_mm": [
+        220.0,
+        220.0,
+        220.0,
+        220.0
+      ],
+      "drive_pos_mm": [
+        -0.0003408846096135676,
+        -0.0003408846678212285
+      ],
+      "drive_target_mm": [
+        0.0,
+        0.0
+      ]
+    }
+  }
+}

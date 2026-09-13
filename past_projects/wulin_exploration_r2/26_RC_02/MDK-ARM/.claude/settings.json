@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd \"f:/spareE/Vinci_Robocon_2026/26_RC_Projects/26_RC_02\" && ls -la)",
+      "Read(//f/spareE/Vinci_Robocon_2026/26_RC_Projects/26_RC_02/**)",
+      "Bash(find \"f:/spareE/Vinci_Robocon_2026/26_RC_Projects/26_RC_02\" -type d -iname \"*fdcan*\" -o -type d -iname \"*can*\" 2>/dev/null | head -80)",
+      "Bash(xxd)",
+      "Bash(python3 _fix_crc.py)",
+      "Bash(python _fix_crc.py)"
+    ],
+    "additionalDirectories": [
+      "f:\\spareE\\Vinci_Robocon_2026\\26_RC_Projects\\26_RC_02\\Components\\Algorithm\\Src",
+      "f:\\spareE\\Vinci_Robocon_2026\\26_RC_Projects\\26_RC_02\\Components\\Algorithm\\Inc",
+      "f:\\spareE\\Vinci_Robocon_2026\\26_RC_Projects\\26_RC_02\\Applications\\App_user\\Inc",
+      "f:\\spareE\\Vinci_Robocon_2026\\26_RC_Projects\\26_RC_02\\Applications\\App_user\\Src",
+      "f:\\spareE\\Vinci_Robocon_2026\\26_RC_Projects\\26_RC_02\\Applications\\Task\\Src",
+      "f:\\spareE\\Vinci_Robocon_2026\\26_RC_Projects\\26_RC_02\\Applications\\Task\\Inc",
+      "f:\\spareE\\Vinci_Robocon_2026\\26_RC_Projects\\26_RC_02\\Components\\Device\\Inc"
+    ]
+  }
+}

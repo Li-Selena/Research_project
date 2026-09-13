@@ -1,0 +1,18 @@
+build-idx:
+  generated-by: csolution version 2.14.1+p9-g859cb6c9
+  csolution: 26_RC_02.csolution.yml
+  cbuild-run: out/26_RC_02+26_RC_02.cbuild-run.yml
+  tmpdir: tmp
+  cprojects:
+    - cproject: 26_RC_02.cproject.yml
+  cbuilds:
+    - cbuild: out/26_RC_02/26_RC_02/26_RC_02+26_RC_02.cbuild.yml
+      project: 26_RC_02
+      configuration: +26_RC_02
+      messages:
+        info:
+          - 26_RC_02.cbuild-pack.yml - file is already up-to-date
+          - 26_RC_02+26_RC_02.cbuild-run.yml - file is already up-to-date
+          - 26_RC_02+26_RC_02.cbuild.yml - file is already up-to-date
+      packs-unused:
+        - pack: ARM::CMSIS-NN@4.1.0

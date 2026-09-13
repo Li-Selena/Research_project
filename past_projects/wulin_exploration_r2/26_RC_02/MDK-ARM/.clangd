@@ -1,0 +1,5 @@
+CompileFlags:
+  CompilationDatabase: f:\spareE\Vinci_Robocon_2026\26_RC_Projects\26_RC_02\MDK-ARM\out\26_RC_02\26_RC_02
+  Add:
+    - -include
+    - f:\spareE\Vinci_Robocon_2026\26_RC_Projects\26_RC_02\MDK-ARM\out\26_RC_02\26_RC_02\compile_macros.h

@@ -1,0 +1,23 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Serial shell",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "serial_tool",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "args": ["shell", "--port", "COM31", "--baud", "115200"]
+    },
+    {
+      "name": "Monitor serial",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "serial_tool",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "args": ["monitor", "--port", "COM31", "--baud", "115200"]
+    }
+  ]
+}

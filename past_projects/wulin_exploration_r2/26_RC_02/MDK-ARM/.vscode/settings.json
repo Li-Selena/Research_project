@@ -1,0 +1,11 @@
+{
+    "debug.hideSlowPreLaunchWarning": true,
+    "debug.showInStatusBar": "never",
+    "clangd.arguments": [
+        "--compile-commands-dir=f:\\spareE\\Vinci_Robocon_2026\\26_RC_Projects\\26_RC_02\\MDK-ARM\\out\\26_RC_02\\26_RC_02"
+    ],
+    "memory-inspector.addressPadding": "32bit",
+    "memory-inspector.groupings.groupsPerRow": "Autofit",
+    "memory-inspector.groupings.MAUsPerGroup": 4,
+    "memory-inspector.scrollingBehavior": "Auto-Append"
+}

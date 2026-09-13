@@ -1,0 +1,3971 @@
+{
+  "type": "r2_climb_debug_flow",
+  "version": 1,
+  "document_status": "historical_debug_capture",
+  "superseded_by": "../CLIMB_ACTION_SEQUENCE.yaml",
+  "name": "upstairs_v01",
+  "created_at": "2026-06-23 16:53:30",
+  "step_count": 88,
+  "steps": [
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 1,
+      "action_name": "ALL_LEGS_220",
+      "values": [
+        1.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 151,
+        "test_action": 1,
+        "test_action_name": "ALL_LEGS_220",
+        "leg_pos_mm": [
+          3.921769142150879,
+          4.1184773445129395,
+          3.648533344268799,
+          4.104465007781982
+        ],
+        "leg_target_mm": [
+          220.0,
+          220.0,
+          220.0,
+          220.0
+        ],
+        "drive_pos_mm": [
+          -0.0006817692192271352,
+          -0.00818123109638691
+        ],
+        "drive_target_mm": [
+          0.0,
+          0.0
+        ]
+      },
+      "index": 1
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 148,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          219.99900817871094,
+          219.99900817871094,
+          220.00009155273438,
+          220.00009155273438
+        ],
+        "leg_target_mm": [
+          220.0,
+          220.0,
+          220.0,
+          220.0
+        ],
+        "drive_pos_mm": [
+          6.5463480949401855,
+          6.672475337982178
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 2
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 143,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          219.99900817871094,
+          220.00115966796875,
+          220.00009155273438,
+          220.00009155273438
+        ],
+        "leg_target_mm": [
+          220.0,
+          220.0,
+          220.0,
+          220.0
+        ],
+        "drive_pos_mm": [
+          6.399767875671387,
+          6.616570472717285
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 3
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 147,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          219.99954223632812,
+          220.00115966796875,
+          219.99954223632812,
+          220.00009155273438
+        ],
+        "leg_target_mm": [
+          220.0,
+          220.0,
+          220.0,
+          220.0
+        ],
+        "drive_pos_mm": [
+          6.642477512359619,
+          6.731789588928223
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 4
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 143,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          219.99954223632812,
+          219.99954223632812,
+          219.99954223632812,
+          219.99954223632812
+        ],
+        "leg_target_mm": [
+          220.0,
+          220.0,
+          220.0,
+          220.0
+        ],
+        "drive_pos_mm": [
+          6.585208892822266,
+          6.621342658996582
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 5
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 141,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          219.99954223632812,
+          219.99954223632812,
+          219.99954223632812,
+          219.99954223632812
+        ],
+        "leg_target_mm": [
+          220.0,
+          220.0,
+          220.0,
+          220.0
+        ],
+        "drive_pos_mm": [
+          6.2818217277526855,
+          6.5477118492126465
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 6
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 151,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          219.99954223632812,
+          219.99954223632812,
+          219.99954223632812,
+          220.00009155273438
+        ],
+        "leg_target_mm": [
+          220.0,
+          220.0,
+          220.0,
+          220.0
+        ],
+        "drive_pos_mm": [
+          6.711336135864258,
+          6.907003879547119
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 7
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 3,
+      "action_name": "ALL_LEGS_DOWN_10",
+      "values": [
+        3.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 147,
+        "test_action": 3,
+        "test_action_name": "ALL_LEGS_DOWN_10",
+        "leg_pos_mm": [
+          214.9934539794922,
+          215.77059936523438,
+          215.17616271972656,
+          214.79837036132812
+        ],
+        "leg_target_mm": [
+          209.99954223632812,
+          209.99900817871094,
+          209.99954223632812,
+          209.99954223632812
+        ],
+        "drive_pos_mm": [
+          29.996482849121094,
+          29.993074417114258
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 8
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 3,
+      "action_name": "ALL_LEGS_DOWN_10",
+      "values": [
+        3.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 141,
+        "test_action": 3,
+        "test_action_name": "ALL_LEGS_DOWN_10",
+        "leg_pos_mm": [
+          205.1537322998047,
+          206.07476806640625,
+          205.4921875,
+          205.16720581054688
+        ],
+        "leg_target_mm": [
+          199.95179748535156,
+          199.99598693847656,
+          200.00730895996094,
+          200.00192260742188
+        ],
+        "drive_pos_mm": [
+          29.995800018310547,
+          29.993755340576172
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 9
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 7,
+      "action_name": "FRONT_ZERO",
+      "values": [
+        7.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 147,
+        "test_action": 7,
+        "test_action_name": "FRONT_ZERO",
+        "leg_pos_mm": [
+          194.85107421875,
+          199.99566650390625,
+          200.046875,
+          194.8570098876953
+        ],
+        "leg_target_mm": [
+          0.0,
+          199.99598693847656,
+          200.00730895996094,
+          0.0
+        ],
+        "drive_pos_mm": [
+          29.99102783203125,
+          29.993074417114258
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 10
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 9,
+      "action_name": "FRONT_DOWN_10",
+      "values": [
+        9.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 143,
+        "test_action": 9,
+        "test_action_name": "FRONT_DOWN_10",
+        "leg_pos_mm": [
+          9.382173538208008,
+          199.992431640625,
+          200.0425567626953,
+          8.894984245300293
+        ],
+        "leg_target_mm": [
+          3.452686309814453,
+          199.99598693847656,
+          200.00730895996094,
+          3.1411867141723633
+        ],
+        "drive_pos_mm": [
+          29.995119094848633,
+          30.243282318115234
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 11
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 9,
+      "action_name": "FRONT_DOWN_10",
+      "values": [
+        9.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 145,
+        "test_action": 9,
+        "test_action_name": "FRONT_DOWN_10",
+        "leg_pos_mm": [
+          -0.7625811696052551,
+          199.992431640625,
+          200.0296173095703,
+          -1.2217466831207275
+        ],
+        "leg_target_mm": [
+          -6.533623695373535,
+          199.99598693847656,
+          200.00730895996094,
+          -6.859135627746582
+        ],
+        "drive_pos_mm": [
+          29.995119094848633,
+          30.243282318115234
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 12
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 147,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          -6.546880722045898,
+          199.99513244628906,
+          200.04470825195312,
+          -6.8896379470825195
+        ],
+        "leg_target_mm": [
+          -6.533623695373535,
+          199.99598693847656,
+          200.00730895996094,
+          -6.859135627746582
+        ],
+        "drive_pos_mm": [
+          6.707927227020264,
+          6.671112060546875
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 13
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 141,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          -6.357178688049316,
+          199.9962158203125,
+          200.04579162597656,
+          -6.8896379470825195
+        ],
+        "leg_target_mm": [
+          -6.533623695373535,
+          199.99598693847656,
+          200.00730895996094,
+          -6.859135627746582
+        ],
+        "drive_pos_mm": [
+          6.345908164978027,
+          6.452945709228516
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 14
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 141,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          -6.547419548034668,
+          199.99728393554688,
+          199.99298095703125,
+          -6.892871379852295
+        ],
+        "leg_target_mm": [
+          -6.533623695373535,
+          199.99598693847656,
+          200.00730895996094,
+          -6.859135627746582
+        ],
+        "drive_pos_mm": [
+          6.3465895652771,
+          6.393631935119629
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 15
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 143,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          -6.5732879638671875,
+          199.99459838867188,
+          199.97950744628906,
+          -6.892871379852295
+        ],
+        "leg_target_mm": [
+          -6.533623695373535,
+          199.99598693847656,
+          200.00730895996094,
+          -6.859135627746582
+        ],
+        "drive_pos_mm": [
+          6.577709674835205,
+          6.5381669998168945
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 16
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 145,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          -6.567359924316406,
+          199.99513244628906,
+          200.03070068359375,
+          -6.733349323272705
+        ],
+        "leg_target_mm": [
+          -6.533623695373535,
+          199.99598693847656,
+          200.00730895996094,
+          -6.859135627746582
+        ],
+        "drive_pos_mm": [
+          6.519077301025391,
+          6.499988079071045
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 17
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 143,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          -6.56520414352417,
+          199.99566650390625,
+          200.0360870361328,
+          -6.893410682678223
+        ],
+        "leg_target_mm": [
+          -6.533623695373535,
+          199.99598693847656,
+          200.00730895996094,
+          -6.859135627746582
+        ],
+        "drive_pos_mm": [
+          6.361588478088379,
+          6.47271728515625
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 18
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 145,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          -6.561431884765625,
+          199.99566650390625,
+          199.98919677734375,
+          -6.8896379470825195
+        ],
+        "leg_target_mm": [
+          -6.533623695373535,
+          199.99598693847656,
+          200.00730895996094,
+          -6.859135627746582
+        ],
+        "drive_pos_mm": [
+          6.382041931152344,
+          6.735198020935059
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 19
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 145,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          -6.562509536743164,
+          199.99566650390625,
+          199.97789001464844,
+          -6.886404514312744
+        ],
+        "leg_target_mm": [
+          -6.533623695373535,
+          199.99598693847656,
+          200.00730895996094,
+          -6.859135627746582
+        ],
+        "drive_pos_mm": [
+          6.570209980010986,
+          6.687474250793457
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 20
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 143,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          -6.396520137786865,
+          199.99566650390625,
+          199.9703369140625,
+          -6.892332553863525
+        ],
+        "leg_target_mm": [
+          -6.533623695373535,
+          199.99598693847656,
+          200.00730895996094,
+          -6.859135627746582
+        ],
+        "drive_pos_mm": [
+          6.701791763305664,
+          6.610434532165527
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 21
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 2,
+      "action_name": "ALL_LEGS_UP_10",
+      "values": [
+        2.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 147,
+        "test_action": 2,
+        "test_action_name": "ALL_LEGS_UP_10",
+        "leg_pos_mm": [
+          -2.877868175506592,
+          202.92636108398438,
+          202.41006469726562,
+          -2.6843936443328857
+        ],
+        "leg_target_mm": [
+          3.445035457611084,
+          209.99566650390625,
+          210.0425567626953,
+          3.107128620147705
+        ],
+        "drive_pos_mm": [
+          29.999210357666016,
+          29.997846603393555
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 22
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 2,
+      "action_name": "ALL_LEGS_UP_10",
+      "values": [
+        2.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 147,
+        "test_action": 2,
+        "test_action_name": "ALL_LEGS_UP_10",
+        "leg_pos_mm": [
+          5.2432169914245605,
+          213.04039001464844,
+          212.47451782226562,
+          5.826335906982422
+        ],
+        "leg_target_mm": [
+          13.47553825378418,
+          219.9976043701172,
+          220.01324462890625,
+          13.193140029907227
+        ],
+        "drive_pos_mm": [
+          29.999210357666016,
+          29.98830223083496
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 23
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 2,
+      "action_name": "ALL_LEGS_UP_10",
+      "values": [
+        2.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 143,
+        "test_action": 2,
+        "test_action_name": "ALL_LEGS_UP_10",
+        "leg_pos_mm": [
+          14.612995147705078,
+          222.93939208984375,
+          222.6036376953125,
+          15.391205787658691
+        ],
+        "leg_target_mm": [
+          23.438135147094727,
+          229.99794006347656,
+          230.0,
+          23.239810943603516
+        ],
+        "drive_pos_mm": [
+          29.999210357666016,
+          29.990346908569336
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 24
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 8,
+      "action_name": "FRONT_UP_10",
+      "values": [
+        8.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 149,
+        "test_action": 8,
+        "test_action_name": "FRONT_UP_10",
+        "leg_pos_mm": [
+          25.70087242126465,
+          229.95245361328125,
+          230.00418090820312,
+          25.914825439453125
+        ],
+        "leg_target_mm": [
+          33.36516571044922,
+          230.0,
+          230.0,
+          33.14258575439453
+        ],
+        "drive_pos_mm": [
+          30.025117874145508,
+          29.939895629882812
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 25
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 147,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          33.33476638793945,
+          230.1761016845703,
+          230.0004119873047,
+          33.141292572021484
+        ],
+        "leg_target_mm": [
+          33.36516571044922,
+          230.0,
+          230.0,
+          33.14258575439453
+        ],
+        "drive_pos_mm": [
+          6.553847789764404,
+          6.898822784423828
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 26
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 149,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          33.386505126953125,
+          229.8990936279297,
+          229.99826049804688,
+          33.14183044433594
+        ],
+        "leg_target_mm": [
+          33.36516571044922,
+          230.0,
+          230.0,
+          33.14258575439453
+        ],
+        "drive_pos_mm": [
+          6.7945122718811035,
+          6.934274673461914
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 27
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 149,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          33.374107360839844,
+          229.9799346923828,
+          229.99771118164062,
+          33.14183044433594
+        ],
+        "leg_target_mm": [
+          33.36516571044922,
+          230.0,
+          230.0,
+          33.14258575439453
+        ],
+        "drive_pos_mm": [
+          6.598844528198242,
+          6.911776542663574
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 28
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 145,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          33.33530807495117,
+          229.879150390625,
+          229.99826049804688,
+          33.14183044433594
+        ],
+        "leg_target_mm": [
+          33.36516571044922,
+          230.0,
+          230.0,
+          33.14258575439453
+        ],
+        "drive_pos_mm": [
+          6.525895118713379,
+          6.600889682769775
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 29
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 147,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          33.38273239135742,
+          229.9583740234375,
+          229.99826049804688,
+          33.142372131347656
+        ],
+        "leg_target_mm": [
+          33.36516571044922,
+          230.0,
+          230.0,
+          33.14258575439453
+        ],
+        "drive_pos_mm": [
+          6.607707500457764,
+          6.90768575668335
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 30
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 147,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          33.38542556762695,
+          229.95083618164062,
+          229.9998779296875,
+          33.142372131347656
+        ],
+        "leg_target_mm": [
+          33.36516571044922,
+          230.0,
+          230.0,
+          33.14258575439453
+        ],
+        "drive_pos_mm": [
+          6.582481861114502,
+          6.768604755401611
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 31
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 143,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          33.35147476196289,
+          229.95407104492188,
+          229.9998779296875,
+          33.142372131347656
+        ],
+        "leg_target_mm": [
+          33.36516571044922,
+          230.0,
+          230.0,
+          33.14258575439453
+        ],
+        "drive_pos_mm": [
+          6.6315693855285645,
+          6.508169174194336
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 32
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 143,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          33.33314895629883,
+          229.97238159179688,
+          229.9998779296875,
+          33.142372131347656
+        ],
+        "leg_target_mm": [
+          33.36516571044922,
+          230.0,
+          230.0,
+          33.14258575439453
+        ],
+        "drive_pos_mm": [
+          6.491124629974365,
+          6.4318108558654785
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 33
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 145,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          33.33369064331055,
+          229.9513702392578,
+          229.99932861328125,
+          33.142372131347656
+        ],
+        "leg_target_mm": [
+          33.36516571044922,
+          230.0,
+          230.0,
+          33.14258575439453
+        ],
+        "drive_pos_mm": [
+          6.628842353820801,
+          6.635659694671631
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 34
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 147,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          33.38219451904297,
+          229.951904296875,
+          229.9998779296875,
+          33.142372131347656
+        ],
+        "leg_target_mm": [
+          33.36516571044922,
+          230.0,
+          230.0,
+          33.14258575439453
+        ],
+        "drive_pos_mm": [
+          6.466581344604492,
+          6.77610445022583
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 35
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 141,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          33.332611083984375,
+          229.8850860595703,
+          229.9998779296875,
+          33.142372131347656
+        ],
+        "leg_target_mm": [
+          33.36516571044922,
+          230.0,
+          230.0,
+          33.14258575439453
+        ],
+        "drive_pos_mm": [
+          6.249096870422363,
+          6.403858184814453
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 36
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 9,
+      "action_name": "FRONT_DOWN_10",
+      "values": [
+        9.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 147,
+        "test_action": 9,
+        "test_action_name": "FRONT_DOWN_10",
+        "leg_pos_mm": [
+          28.328678131103516,
+          230.07693481445312,
+          229.9998779296875,
+          28.157838821411133
+        ],
+        "leg_target_mm": [
+          23.374107360839844,
+          230.0,
+          230.0,
+          23.142372131347656
+        ],
+        "drive_pos_mm": [
+          29.99989128112793,
+          29.982847213745117
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 37
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 9,
+      "action_name": "FRONT_DOWN_10",
+      "values": [
+        9.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 149,
+        "test_action": 9,
+        "test_action_name": "FRONT_DOWN_10",
+        "leg_pos_mm": [
+          18.452308654785156,
+          230.0656280517578,
+          229.9998779296875,
+          17.959190368652344
+        ],
+        "leg_target_mm": [
+          13.385643005371094,
+          230.0,
+          230.0,
+          13.114023208618164
+        ],
+        "drive_pos_mm": [
+          29.987619400024414,
+          29.939895629882812
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 38
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 9,
+      "action_name": "FRONT_DOWN_10",
+      "values": [
+        9.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 145,
+        "test_action": 9,
+        "test_action_name": "FRONT_DOWN_10",
+        "leg_pos_mm": [
+          8.633065223693848,
+          230.0241241455078,
+          229.99932861328125,
+          8.273062705993652
+        ],
+        "leg_target_mm": [
+          3.3966379165649414,
+          230.0,
+          230.0,
+          3.1185522079467773
+        ],
+        "drive_pos_mm": [
+          29.731956481933594,
+          29.916715621948242
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 39
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 15,
+      "action_name": "REAR_DOWN_10",
+      "values": [
+        15.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 149,
+        "test_action": 15,
+        "test_action_name": "REAR_DOWN_10",
+        "leg_pos_mm": [
+          3.4981727600097656,
+          225.97894287109375,
+          225.01803588867188,
+          3.0934388637542725
+        ],
+        "leg_target_mm": [
+          3.3966379165649414,
+          219.95083618164062,
+          219.99932861328125,
+          3.1185522079467773
+        ],
+        "drive_pos_mm": [
+          29.736045837402344,
+          29.816495895385742
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 40
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 15,
+      "action_name": "REAR_DOWN_10",
+      "values": [
+        15.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 145,
+        "test_action": 15,
+        "test_action_name": "REAR_DOWN_10",
+        "leg_pos_mm": [
+          3.4642202854156494,
+          215.93011474609375,
+          215.22035217285156,
+          3.0961334705352783
+        ],
+        "leg_target_mm": [
+          3.3966379165649414,
+          209.75595092773438,
+          209.99147033691406,
+          3.1185522079467773
+        ],
+        "drive_pos_mm": [
+          29.833539962768555,
+          29.817176818847656
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 41
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 143,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          3.4868552684783936,
+          209.70388793945312,
+          209.9523468017578,
+          3.0918221473693848
+        ],
+        "leg_target_mm": [
+          3.3966379165649414,
+          209.75595092773438,
+          209.99147033691406,
+          3.1185522079467773
+        ],
+        "drive_pos_mm": [
+          6.3493170738220215,
+          6.444082736968994
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 42
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 145,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          3.4706873893737793,
+          209.71359252929688,
+          210.0105438232422,
+          3.127930164337158
+        ],
+        "leg_target_mm": [
+          3.3966379165649414,
+          209.75595092773438,
+          209.99147033691406,
+          3.1185522079467773
+        ],
+        "drive_pos_mm": [
+          6.514986991882324,
+          6.578391075134277
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 43
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 149,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          3.4868552684783936,
+          209.7211456298828,
+          210.0013885498047,
+          3.1322414875030518
+        ],
+        "leg_target_mm": [
+          3.3966379165649414,
+          209.75595092773438,
+          209.99147033691406,
+          3.1185522079467773
+        ],
+        "drive_pos_mm": [
+          6.777467727661133,
+          6.826555252075195
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 44
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 144,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          3.4696097373962402,
+          209.71575927734375,
+          209.96958923339844,
+          3.1872119903564453
+        ],
+        "leg_target_mm": [
+          3.3966379165649414,
+          209.75595092773438,
+          209.99147033691406,
+          3.1185522079467773
+        ],
+        "drive_pos_mm": [
+          6.545666217803955,
+          6.6786112785339355
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 45
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 143,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          3.307931661605835,
+          209.72059631347656,
+          210.010009765625,
+          3.0934388637542725
+        ],
+        "leg_target_mm": [
+          3.3966379165649414,
+          209.75595092773438,
+          209.99147033691406,
+          3.1185522079467773
+        ],
+        "drive_pos_mm": [
+          6.168647766113281,
+          6.557256698608398
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 46
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 143,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          3.477693557739258,
+          209.71629333496094,
+          210.00624084472656,
+          3.1322414875030518
+        ],
+        "leg_target_mm": [
+          3.3966379165649414,
+          209.75595092773438,
+          209.99147033691406,
+          3.1185522079467773
+        ],
+        "drive_pos_mm": [
+          6.154330730438232,
+          6.617252349853516
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 47
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 145,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          3.3057758808135986,
+          209.81060791015625,
+          209.9965362548828,
+          3.1791281700134277
+        ],
+        "leg_target_mm": [
+          3.3966379165649414,
+          209.75595092773438,
+          209.99147033691406,
+          3.1185522079467773
+        ],
+        "drive_pos_mm": [
+          6.32477331161499,
+          6.755651473999023
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 48
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 147,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          3.4825439453125,
+          209.72544860839844,
+          210.00730895996094,
+          3.08266019821167
+        ],
+        "leg_target_mm": [
+          3.3966379165649414,
+          209.75595092773438,
+          209.99147033691406,
+          3.1185522079467773
+        ],
+        "drive_pos_mm": [
+          6.675202369689941,
+          6.748833656311035
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 49
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 147,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          3.4841606616973877,
+          209.71359252929688,
+          209.96096801757812,
+          3.1376309394836426
+        ],
+        "leg_target_mm": [
+          3.3966379165649414,
+          209.75595092773438,
+          209.99147033691406,
+          3.1185522079467773
+        ],
+        "drive_pos_mm": [
+          6.536803245544434,
+          6.7447428703308105
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 50
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 143,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          3.312782049179077,
+          209.80252075195312,
+          210.01324462890625,
+          3.1807448863983154
+        ],
+        "leg_target_mm": [
+          3.3966379165649414,
+          209.75595092773438,
+          209.99147033691406,
+          3.1185522079467773
+        ],
+        "drive_pos_mm": [
+          6.459081649780273,
+          6.364315986633301
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 51
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 143,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          3.369908094406128,
+          209.70982360839844,
+          209.99815368652344,
+          3.1715831756591797
+        ],
+        "leg_target_mm": [
+          3.3966379165649414,
+          209.75595092773438,
+          209.99147033691406,
+          3.1185522079467773
+        ],
+        "drive_pos_mm": [
+          6.277049541473389,
+          6.5463480949401855
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 52
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 143,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          3.472304344177246,
+          209.72653198242188,
+          210.00624084472656,
+          3.1467926502227783
+        ],
+        "leg_target_mm": [
+          3.3966379165649414,
+          209.75595092773438,
+          209.99147033691406,
+          3.1185522079467773
+        ],
+        "drive_pos_mm": [
+          6.167966365814209,
+          6.531349182128906
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 53
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 145,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          3.2944583892822266,
+          209.7211456298828,
+          210.0035400390625,
+          3.125774383544922
+        ],
+        "leg_target_mm": [
+          3.3966379165649414,
+          209.75595092773438,
+          209.99147033691406,
+          3.1185522079467773
+        ],
+        "drive_pos_mm": [
+          6.156376361846924,
+          6.652704238891602
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 54
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 143,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          3.47607684135437,
+          209.72329711914062,
+          209.99383544921875,
+          3.1349360942840576
+        ],
+        "leg_target_mm": [
+          3.3966379165649414,
+          209.75595092773438,
+          209.99147033691406,
+          3.1185522079467773
+        ],
+        "drive_pos_mm": [
+          5.9463911056518555,
+          6.83132791519165
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 55
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 143,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          3.372602939605713,
+          209.72276306152344,
+          210.01324462890625,
+          3.1403255462646484
+        ],
+        "leg_target_mm": [
+          3.3966379165649414,
+          209.75595092773438,
+          209.99147033691406,
+          3.1185522079467773
+        ],
+        "drive_pos_mm": [
+          6.000932693481445,
+          6.6445231437683105
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 56
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 141,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          3.477154493331909,
+          209.7222137451172,
+          210.00946044921875,
+          3.1500260829925537
+        ],
+        "leg_target_mm": [
+          3.3966379165649414,
+          209.75595092773438,
+          209.99147033691406,
+          3.1185522079467773
+        ],
+        "drive_pos_mm": [
+          6.032294273376465,
+          6.425674915313721
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 57
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 151,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          3.4593701362609863,
+          209.71414184570312,
+          210.00030517578125,
+          3.0654146671295166
+        ],
+        "leg_target_mm": [
+          3.3966379165649414,
+          209.75595092773438,
+          209.99147033691406,
+          3.1185522079467773
+        ],
+        "drive_pos_mm": [
+          6.598162651062012,
+          7.015405178070068
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 58
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 149,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          3.4701485633850098,
+          209.72276306152344,
+          210.0056915283203,
+          3.148409366607666
+        ],
+        "leg_target_mm": [
+          3.3966379165649414,
+          209.75595092773438,
+          209.99147033691406,
+          3.1185522079467773
+        ],
+        "drive_pos_mm": [
+          6.223189353942871,
+          6.865416049957275
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 59
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 147,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          3.4701485633850098,
+          209.70767211914062,
+          210.00083923339844,
+          2.8767902851104736
+        ],
+        "leg_target_mm": [
+          3.3966379165649414,
+          209.75595092773438,
+          209.99147033691406,
+          3.1185522079467773
+        ],
+        "drive_pos_mm": [
+          5.9204840660095215,
+          6.589981555938721
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 60
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 145,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          3.256194591522217,
+          209.72706604003906,
+          209.9949188232422,
+          3.140864372253418
+        ],
+        "leg_target_mm": [
+          3.3966379165649414,
+          209.75595092773438,
+          209.99147033691406,
+          3.1185522079467773
+        ],
+        "drive_pos_mm": [
+          6.006386756896973,
+          6.5995259284973145
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 61
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 151,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          3.481466054916382,
+          209.7211456298828,
+          210.0105438232422,
+          2.9199044704437256
+        ],
+        "leg_target_mm": [
+          3.3966379165649414,
+          209.75595092773438,
+          209.99147033691406,
+          3.1185522079467773
+        ],
+        "drive_pos_mm": [
+          6.5961174964904785,
+          7.0010881423950195
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 62
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 147,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          3.4744598865509033,
+          209.71197509765625,
+          209.99977111816406,
+          3.1424810886383057
+        ],
+        "leg_target_mm": [
+          3.3966379165649414,
+          209.75595092773438,
+          209.99147033691406,
+          3.1185522079467773
+        ],
+        "drive_pos_mm": [
+          6.395677089691162,
+          6.5995259284973145
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 63
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 149,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          3.3704471588134766,
+          209.70928955078125,
+          210.0121612548828,
+          3.147331476211548
+        ],
+        "leg_target_mm": [
+          3.3966379165649414,
+          209.75595092773438,
+          209.99147033691406,
+          3.1185522079467773
+        ],
+        "drive_pos_mm": [
+          6.162512302398682,
+          6.7638325691223145
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 64
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 149,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          3.3704471588134766,
+          209.70928955078125,
+          210.0121612548828,
+          3.147331476211548
+        ],
+        "leg_target_mm": [
+          3.3966379165649414,
+          209.75595092773438,
+          209.99147033691406,
+          3.1185522079467773
+        ],
+        "drive_pos_mm": [
+          6.162512302398682,
+          6.7638325691223145
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 65
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 147,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          3.4706873893737793,
+          209.708740234375,
+          210.0030059814453,
+          3.1311635971069336
+        ],
+        "leg_target_mm": [
+          3.3966379165649414,
+          209.75595092773438,
+          209.99147033691406,
+          3.1185522079467773
+        ],
+        "drive_pos_mm": [
+          6.284548759460449,
+          6.881778717041016
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 66
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 145,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          3.369908094406128,
+          209.80899047851562,
+          209.95718383789062,
+          3.1376309394836426
+        ],
+        "leg_target_mm": [
+          3.3966379165649414,
+          209.75595092773438,
+          209.99147033691406,
+          3.1185522079467773
+        ],
+        "drive_pos_mm": [
+          5.759586334228516,
+          6.819056034088135
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 67
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 143,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          3.4879331588745117,
+          209.7082061767578,
+          210.010009765625,
+          3.1365530490875244
+        ],
+        "leg_target_mm": [
+          3.3966379165649414,
+          209.75595092773438,
+          209.99147033691406,
+          3.1185522079467773
+        ],
+        "drive_pos_mm": [
+          5.602779388427734,
+          6.564755916595459
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 68
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 145,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          3.481466054916382,
+          209.7852783203125,
+          210.00677490234375,
+          3.17751145362854
+        ],
+        "leg_target_mm": [
+          3.3966379165649414,
+          209.75595092773438,
+          209.99147033691406,
+          3.1185522079467773
+        ],
+        "drive_pos_mm": [
+          6.0172953605651855,
+          6.720199108123779
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 69
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 143,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          3.300386667251587,
+          209.71414184570312,
+          210.00946044921875,
+          3.1376309394836426
+        ],
+        "leg_target_mm": [
+          3.3966379165649414,
+          209.75595092773438,
+          209.99147033691406,
+          3.1185522079467773
+        ],
+        "drive_pos_mm": [
+          6.097062110900879,
+          6.570209980010986
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 70
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 14,
+      "action_name": "REAR_UP_10",
+      "values": [
+        14.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 149,
+        "test_action": 14,
+        "test_action_name": "REAR_UP_10",
+        "leg_pos_mm": [
+          3.311704158782959,
+          212.9088897705078,
+          211.93020629882812,
+          3.1349360942840576
+        ],
+        "leg_target_mm": [
+          3.3966379165649414,
+          219.72544860839844,
+          219.96365356445312,
+          3.1185522079467773
+        ],
+        "drive_pos_mm": [
+          29.99989128112793,
+          29.97807502746582
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 71
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 145,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          3.4717652797698975,
+          219.7462615966797,
+          219.95751953125,
+          3.1807448863983154
+        ],
+        "leg_target_mm": [
+          3.3966379165649414,
+          219.72544860839844,
+          219.96365356445312,
+          3.1185522079467773
+        ],
+        "drive_pos_mm": [
+          6.04388427734375,
+          6.758378505706787
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 72
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 149,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          3.312782049179077,
+          219.6497802734375,
+          219.96182250976562,
+          3.098828077316284
+        ],
+        "leg_target_mm": [
+          3.3966379165649414,
+          219.72544860839844,
+          219.96365356445312,
+          3.1185522079467773
+        ],
+        "drive_pos_mm": [
+          6.470671653747559,
+          6.9349565505981445
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 73
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 149,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          3.3030812740325928,
+          219.74517822265625,
+          219.96290588378906,
+          2.8336760997772217
+        ],
+        "leg_target_mm": [
+          3.3966379165649414,
+          219.72544860839844,
+          219.96365356445312,
+          3.1185522079467773
+        ],
+        "drive_pos_mm": [
+          6.358180046081543,
+          6.937001705169678
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 74
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 149,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          3.477154493331909,
+          219.653564453125,
+          219.9688262939453,
+          3.1387085914611816
+        ],
+        "leg_target_mm": [
+          3.3966379165649414,
+          219.72544860839844,
+          219.96365356445312,
+          3.1185522079467773
+        ],
+        "drive_pos_mm": [
+          6.1754655838012695,
+          6.857916831970215
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 75
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 145,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          3.307931661605835,
+          219.73655700683594,
+          219.9672088623047,
+          3.1149959564208984
+        ],
+        "leg_target_mm": [
+          3.3966379165649414,
+          219.72544860839844,
+          219.96365356445312,
+          3.1185522079467773
+        ],
+        "drive_pos_mm": [
+          6.111379623413086,
+          6.574300765991211
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 76
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 147,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          3.301464557647705,
+          219.741943359375,
+          219.9666748046875,
+          3.098828077316284
+        ],
+        "leg_target_mm": [
+          3.3966379165649414,
+          219.72544860839844,
+          219.96365356445312,
+          3.1185522079467773
+        ],
+        "drive_pos_mm": [
+          5.9784345626831055,
+          6.6963372230529785
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 77
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 141,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          3.300386667251587,
+          219.74786376953125,
+          219.96343994140625,
+          3.1149959564208984
+        ],
+        "leg_target_mm": [
+          3.3966379165649414,
+          219.72544860839844,
+          219.96365356445312,
+          3.1185522079467773
+        ],
+        "drive_pos_mm": [
+          5.915030002593994,
+          6.477489471435547
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 78
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 143,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          3.4803881645202637,
+          219.6756591796875,
+          219.9580535888672,
+          3.1246964931488037
+        ],
+        "leg_target_mm": [
+          3.3966379165649414,
+          219.72544860839844,
+          219.96365356445312,
+          3.1185522079467773
+        ],
+        "drive_pos_mm": [
+          6.0527472496032715,
+          6.517032146453857
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 79
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 151,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          3.4669148921966553,
+          219.7489471435547,
+          219.96290588378906,
+          3.1904456615448
+        ],
+        "leg_target_mm": [
+          3.3966379165649414,
+          219.72544860839844,
+          219.96365356445312,
+          3.1185522079467773
+        ],
+        "drive_pos_mm": [
+          6.442719459533691,
+          7.027677059173584
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 80
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 143,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          3.4696097373962402,
+          219.7548828125,
+          219.9138641357422,
+          3.1263134479522705
+        ],
+        "leg_target_mm": [
+          3.3966379165649414,
+          219.72544860839844,
+          219.96365356445312,
+          3.1185522079467773
+        ],
+        "drive_pos_mm": [
+          6.155012607574463,
+          6.596798896789551
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 81
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 144,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          3.3057758808135986,
+          219.72738647460938,
+          219.9623565673828,
+          3.1246964931488037
+        ],
+        "leg_target_mm": [
+          3.3966379165649414,
+          219.72544860839844,
+          219.96365356445312,
+          3.1185522079467773
+        ],
+        "drive_pos_mm": [
+          5.933437824249268,
+          6.68270206451416
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 82
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 141,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          3.294997453689575,
+          219.73817443847656,
+          219.94134521484375,
+          3.1327805519104004
+        ],
+        "leg_target_mm": [
+          3.3966379165649414,
+          219.72544860839844,
+          219.96365356445312,
+          3.1185522079467773
+        ],
+        "drive_pos_mm": [
+          6.181601524353027,
+          6.499988079071045
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 83
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 4,
+      "action_name": "DRIVE_FORWARD_30",
+      "values": [
+        4.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 145,
+        "test_action": 4,
+        "test_action_name": "DRIVE_FORWARD_30",
+        "leg_pos_mm": [
+          3.3122429847717285,
+          219.757568359375,
+          219.95590209960938,
+          3.186673164367676
+        ],
+        "leg_target_mm": [
+          3.3966379165649414,
+          219.72544860839844,
+          219.96365356445312,
+          3.1185522079467773
+        ],
+        "drive_pos_mm": [
+          6.227962017059326,
+          6.819056034088135
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 84
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 16,
+      "action_name": "ALL_LEGS_ZERO",
+      "values": [
+        16.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 149,
+        "test_action": 16,
+        "test_action_name": "ALL_LEGS_ZERO",
+        "leg_pos_mm": [
+          0.004311413038522005,
+          76.85794067382812,
+          31.113311767578125,
+          0.0010778532596305013
+        ],
+        "leg_target_mm": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "drive_pos_mm": [
+          29.72786521911621,
+          30.00125503540039
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 85
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 3,
+      "action_name": "ALL_LEGS_DOWN_10",
+      "values": [
+        3.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 143,
+        "test_action": 3,
+        "test_action_name": "ALL_LEGS_DOWN_10",
+        "leg_pos_mm": [
+          -4.107159614562988,
+          -3.649611234664917,
+          -3.811289072036743,
+          -4.2138671875
+        ],
+        "leg_target_mm": [
+          -10.0,
+          -9.99946117401123,
+          -10.0,
+          -10.0
+        ],
+        "drive_pos_mm": [
+          29.72786521911621,
+          30.00125503540039
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 86
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 10,
+      "action_name": "CHASSIS_FORWARD_100",
+      "values": [
+        10.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 147,
+        "test_action": 10,
+        "test_action_name": "CHASSIS_FORWARD_100",
+        "leg_pos_mm": [
+          -10.01648998260498,
+          -9.930261611938477,
+          -9.783674240112305,
+          -10.047747611999512
+        ],
+        "leg_target_mm": [
+          -10.0,
+          -9.99946117401123,
+          -10.0,
+          -10.0
+        ],
+        "drive_pos_mm": [
+          29.72786521911621,
+          30.00125503540039
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 87
+    },
+    {
+      "command": "CLIMB_TEST_ACTION",
+      "action_id": 10,
+      "action_name": "CHASSIS_FORWARD_100",
+      "values": [
+        10.0
+      ],
+      "wait": true,
+      "timeout_s": 3.0,
+      "done_condition": "CLIMB_GET_STATUS.state_done == 1",
+      "result": {
+        "state": 0,
+        "state_name": "IDLE",
+        "state_done": false,
+        "error_flags": {
+          "timeout": false,
+          "param_not_configured": false,
+          "test_action": false
+        },
+        "elapsed_ms": 143,
+        "test_action": 10,
+        "test_action_name": "CHASSIS_FORWARD_100",
+        "leg_pos_mm": [
+          -10.028885841369629,
+          -10.088706016540527,
+          -10.039125442504883,
+          -10.039664268493652
+        ],
+        "leg_target_mm": [
+          -10.0,
+          -9.99946117401123,
+          -10.0,
+          -10.0
+        ],
+        "drive_pos_mm": [
+          29.72786521911621,
+          30.00125503540039
+        ],
+        "drive_target_mm": [
+          30.0,
+          30.0
+        ]
+      },
+      "index": 88
+    }
+  ]
+}

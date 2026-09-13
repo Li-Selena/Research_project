@@ -1,0 +1,26 @@
+# Authoritative upstairs sequence mirrored from R2_climb.c.
+version: 3
+flow: upstairs
+source: Applications/R2_user/Src/R2_climb.c
+coordinate_frame: {x: forward, y: left, z: up, yaw: ccw}
+units: {leg_target: mm, drive_delta: mm, chassis_delta: m, timeout: ms}
+standby_leg_target_mm: -30
+pre_sequence:
+  - {state: UP_LASER_APPROACH_X_LT_35, command: chassis_velocity, x_mps: 0.08, trigger: "x_pos channel < 35 mm", timeout_ms: 8000}
+  - {state: PREPARE_ALL_LEGS_MINUS_30, leg_target_mm: [-30, -30, -30, -30]}
+  - {state: UP_PREPARE_CHASSIS_FORWARD_30, command: chassis_distance, x_m: 0.03, timeout_ms: 4000}
+steps:
+  - {index: 1, state: STEP_01_ALL_LEGS_220, kind: leg_target, leg_target_mm: [220, 220, 220, 220]}
+  - {index: 2, state: STEP_02_ALL_DRIVE_FORWARD_30_X3, kind: drive_delta, group: all, drive_delta_mm: 90}
+  - {index: 3, state: STEP_03_ALL_DRIVE_FORWARD_10_X3, kind: drive_delta, group: all, drive_delta_mm: 30}
+  - {index: 4, state: STEP_04_ALL_LEGS_DOWN_10_X5, kind: leg_target, leg_target_mm: [170, 170, 170, 170]}
+  - {index: 5, state: STEP_05_FRONT_MINUS_30, kind: leg_target, leg_target_mm: [-30, 170, 170, -30]}
+  - {index: 6, state: STEP_06_REAR_DRIVE_FORWARD_30_X4, kind: drive_delta, group: rear, drive_delta_mm: 120}
+  - {index: 7, state: STEP_07_FRONT_UP_10_X2, kind: leg_target, leg_target_mm: [-10, 170, 170, -10]}
+  - {index: 8, state: STEP_08_ALL_LEGS_UP_10_X6, kind: leg_target, leg_target_mm: [50, 230, 230, 50]}
+  - {index: 9, state: STEP_09_ALL_DRIVE_FORWARD_200_PAUSE, kind: drive_delta, group: all, drive_delta_mm: 200, auto_pause_point: true}
+  - {index: 10, state: STEP_10_ALL_DRIVE_FORWARD_300_RESUME, kind: drive_delta, group: all, drive_delta_mm: 300}
+  - {index: 11, state: STEP_11_ALL_DRIVE_FORWARD_30_X9, kind: drive_delta, group: all, drive_delta_mm: 270}
+  - {index: 12, state: STEP_12_ALL_LEGS_ZERO, kind: leg_target, leg_target_mm: [0, 0, 0, 0]}
+  - {index: 13, state: STEP_13_ALL_LEGS_DOWN_10_X2, kind: leg_target, leg_target_mm: [-20, -20, -20, -20]}
+  - {index: 14, state: STEP_14_CHASSIS_FORWARD_100_X2, kind: chassis_delta, x_m: 0.20}

@@ -1,0 +1,633 @@
+livox_ros_driver2:
+  ros__parameters:
+    xfer_format: 1                                      # 1-LivoxCustomMsg: FAST-LIO mid360.yaml uses lidar_type 1 and subscribes to /livox/lidar CustomMsg
+    multi_topic: 0                                      # 0-All LiDARs share the same topic, 1-One LiDAR one topic
+    data_src: 0                                         # 0-lidar, others-Invalid data src
+    publish_freq: 20.0                                  # frequency of publish, 5.0, 10.0, 20.0, 50.0, etc.
+    output_data_type: 0
+    frame_id: front_mid360
+    user_config_path: $(find-pkg-share pb2025_nav_bringup)/config/reality/mid360_user_config.json
+    cmdline_input_bd_code: livox0000000001
+    lvx_file_path: ""
+
+# ==================== FAST-LIO 里程计配置 ====================
+# FAST-LIO 参数文件位于 fast_lio 包内：fast_lio/config/mid360.yaml
+# 此处不再重复定义，以保持单一数据源。
+
+# ==================== LOAM 接口配置 ====================
+# 将 FAST-LIO 输出转换为 Nav2 可用的里程计格式
+# 处理坐标系转换和话题重映射
+loam_interface:
+  ros__parameters:
+    use_sim_time: False
+    state_estimation_topic: "Odometry"       # FAST-LIO2 发布的话题为 "Odometry"（注意大写 O）
+    registered_scan_topic: "cloud_registered" # FAST-LIO2 发布相对话题 cloud_registered
+    odom_frame: "odom"
+    base_frame: "base_footprint"
+    lidar_frame: "front_mid360"
+    # 雷达到 IMU 的外参（T_imu_lidar），数值需与 fast_lio/config/mid360.yaml 中的 extrinsic_T/R 保持一致
+    lidar_to_imu_extrinsic_T: [-0.011, -0.02329, 0.04412]
+    lidar_to_imu_extrinsic_R: [1.0, 0.0, 0.0,
+                               0.0, 1.0, 0.0,
+                               0.0, 0.0, 1.0]
+
+# ==================== 传感器扫描生成配置 ====================
+# 将点云数据转换为 Nav2 代价地图可用的扫描格式
+sensor_scan_generation:
+  ros__parameters:
+    use_sim_time: False
+    lidar_frame: "front_mid360"
+    base_frame: "base_footprint"
+    robot_base_frame: "base_footprint"
+    publish_tf: false                   # 默认不发布 odom->base_footprint TF，由 loam_interface 负责
+
+# ==================== 地形分析（局部）配置 ====================
+# 分析局部地形，检测可通行区域和障碍物
+# 输出 terrain_map 点云，用于局部代价地图
+terrain_analysis:
+  ros__parameters:
+    scanVoxelSize: 0.05                 # 点云下采样
+    decayTime: 0.5                      # 点云时间差阈值 大于则不会被处理
+    noDecayDis: 0.0                     # 点云距离阈值 小于该阈值不考虑时间差
+    clearingDis: 0.0                    # 该距离外的点会被清除
+    useSorting: True                    # 这个参数开起来就能上坡了；如果 use_sorting,那么就以周围点中的分位点作为地面点，否则以最低点作为地面点；周围其余点相对于地面点的高度作为通过代价，所以对于坡面，有的点的代价是正，有的是负，就相互抵消了；不要与 consider_drop 同时开启，计算上会有冲突
+    quantileZ: 0.2                      # useful if use_sorting is enabled.
+    considerDrop: False                 # 考虑凹下去的地面,开启则将相对于地面点的高度取绝对值
+    limitGroundLift: False
+    maxGroundLift: 0.3
+    clearDyObs: True                    # 清除动态物体的话，有动态物体走过的地方就走不了了
+    minDyObsDis: 0.3                    # 以下参数都是在 clear_dy_obs 的情况下才有用的
+    minDyObsAngle: 0.0
+    minDyObsRelZ: -0.3
+    absDyObsRelZThre: 0.2
+    minDyObsVFOV: -28.0
+    maxDyObsVFOV: 33.0
+    minDyObsPointNum: 1
+    noDataObstacle: False               # treat no data as obstacle
+    noDataBlockSkipNum: 0
+    minBlockPointNum: 10
+    vehicleHeight: 0.5                  # 小于车辆高度的点才会进行处理
+    voxelPointUpdateThre: 100
+    voxelTimeUpdateThre: 1.0
+    minRelZ: -1.5                       # min_rel_z 以及 max_rel_z 限制了有效点云点的Z值范围，用于对天花板和地板进行处理
+    maxRelZ: 0.5
+    disRatioZ: 0.2                      # Z 值的最大最小范围由这两个值决定，但是并不等于这两个值，是有一个比例关系的，距离机器人越远，限定范围就越大，这其中考虑了坡度
+
+# ==================== 地形分析（全局）配置 ====================
+# 分析全局地形，用于全局代价地图
+# 比局部分析范围更大，更新频率更低
+terrain_analysis_ext:
+  ros__parameters:
+    scanVoxelSize: 0.1
+    decayTime: 0.2
+    noDecayDis: 0.0
+    clearingDis: 20.0
+    useSorting: true
+    quantileZ: 0.2
+    vehicleHeight: 1.0
+    voxelPointUpdateThre: 100
+    voxelTimeUpdateThre: 2.0
+    lowerBoundZ: -1.5
+    upperBoundZ: 0.5
+    disRatioZ: 0.2
+    checkTerrainConn: True          # true: 检查地形连通性，避免规划不可行路径（如跳下台/沟壑）
+    terrainUnderVehicle: -0.75
+    terrainConnThre: 0.5
+    ceilingFilteringThre: 2.0
+    localTerrainMapRadius: 4.0
+
+# ==================== 速度转换配置（已禁用） ====================
+# 原用于云台自旋时的速度坐标系补偿
+# 已去除云台（RoboCon 比赛），此模块不再使用
+# fake_vel_transform:
+#   ros__parameters:
+#     use_sim_time: False
+#     odom_topic: "odometry"
+#     robot_base_frame: "base_footprint"
+#     fake_robot_base_frame: "base_footprint"
+#     input_cmd_vel_topic: "cmd_vel_nav2_result"
+#     output_cmd_vel_topic: "cmd_vel"
+#     cmd_spin_topic: "cmd_spin"
+#     init_spin_speed: 3.14
+
+# ==================== GICP 重定位配置 ====================
+# 基于 Generalized ICP 的点云配准重定位
+# 将实时点云与先验地图匹配，输出 map->odom 变换
+small_gicp_relocalization:
+  ros__parameters:
+    use_sim_time: False
+    num_threads: 4
+    num_neighbors: 20
+    global_leaf_size: 0.1
+    registered_leaf_size: 0.05
+    max_dist_sq: 4.0
+    registration_frequency: 2.0  # GICP 配准频率（Hz）
+    map_frame: "map"
+    odom_frame: "odom"
+    robot_base_frame: "base_footprint"
+    lidar_frame: "front_mid360"
+    init_pose: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]   # [x, y, z, roll, pitch, yaw]
+    # The prior_pcd_file does not need to be specified since it going to be set by defaults in launch.
+    # prior_pcd_file: ""
+
+# ==================== AMCL 2D 定位配置 ====================
+# 基于蒙特卡洛粒子滤波的 2D 激光定位
+# 与 FAST-LIO2 里程计配合，发布 map->odom 变换
+# 通过 localization_mode:=amcl 启用
+amcl:
+  ros__parameters:
+    use_sim_time: False
+    # 机器人运动模型：OmniMotionModel 匹配全向底盘（Humble 需用完整插件类名）
+    robot_model_type: "nav2_amcl::OmniMotionModel"
+    # 里程计噪声参数（alpha1~alpha5 分别对应：旋转-旋转、旋转-平移、平移-平移、平移-旋转、侧移）
+    # FAST-LIO2 里程计较准，设中等值即可；alpha5 对 OmniMotionModel 有效
+    alpha1: 0.2
+    alpha2: 0.2
+    alpha3: 0.2
+    alpha4: 0.2
+    # 坐标系与地图配置
+    global_frame_id: "map"
+    odom_frame_id: "odom"
+    base_frame_id: "base_footprint"
+    scan_topic: "scan"
+    map_topic: "map"
+    # 激光模型参数
+    laser_model_type: "likelihood_field"
+    laser_min_range: 0.3
+    laser_max_range: 10.0
+    z_hit: 0.95
+    z_short: 0.05
+    z_max: 0.05
+    z_rand: 0.05
+    sigma_hit: 0.2
+    lambda_short: 0.1
+    laser_likelihood_max_dist: 2.0
+    max_beams: 60
+    # 粒子滤波参数
+    min_particles: 500
+    max_particles: 2000
+    pf_err: 0.05
+    pf_z: 0.99
+    resample_interval: 1
+    # 更新阈值
+    update_min_d: 0.1
+    update_min_a: 0.1
+    # 初始位姿：默认从地图原点开始；实际使用时请通过 RViz 2D Pose Estimate 或参数调整
+    set_initial_pose: true
+    always_reset_initial_pose: false
+    initial_pose:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      yaw: 0.0
+    # TF 与恢复行为
+    tf_broadcast: true
+    transform_tolerance: 0.1
+    save_pose_rate: 0.5
+    recovery_alpha_slow: 0.0
+    recovery_alpha_fast: 0.0
+    # Beam skipping（默认关闭，可在高动态场景中开启）
+    do_beamskip: false
+    beam_skip_distance: 0.5
+    beam_skip_error_threshold: 0.9
+    beam_skip_threshold: 0.3
+
+# ==================== 点云转激光扫描配置 ====================
+# 将 3D 点云转换为 2D 激光扫描数据
+# 用于 SLAM Toolbox 建图（输出重映射为 obstacle_scan）以及 AMCL 定位（输出为 scan）
+pointcloud_to_laserscan:
+  ros__parameters:
+    use_sim_time: False
+    # 雷达正放安装，front_mid360 与 base_footprint 方向一致。
+    # SLAM 建图使用原始 registered_scan（odom 系），此处投影到 front_mid360。
+    target_frame: front_mid360
+    min_height: 0.0
+    max_height: 1.5
+    min_intensity: 0.1
+    max_intensity: 2.0
+    transform_tolerance: 0.1                # TF 变换容差，避免点云时间戳与 TF 不同步导致丢帧
+    angle_min: -3.1415926                   # -M_PI
+    angle_max: 3.1415926                    # M_PI
+    angle_increment: 0.00872665             # M_PI/360.0
+    scan_time: 0.05
+    range_min: 0.3
+    range_max: 10.0
+    use_inf: true
+
+# ==================== SLAM Toolbox 配置 ====================
+# 同步 SLAM 建图工具
+# 使用 Ceres 求解器进行图优化
+# 用于比赛前场地建图，生成先验地图
+slam_toolbox:
+  ros__parameters:
+    # https://github.com/SteveMacenski/slam_toolbox/tree/humble?#configuration
+    solver_plugin: solver_plugins::CeresSolver
+    ceres_linear_solver: SPARSE_NORMAL_CHOLESKY
+    ceres_preconditioner: SCHUR_JACOBI
+    ceres_trust_strategy: LEVENBERG_MARQUARDT
+    ceres_dogleg_type: TRADITIONAL_DOGLEG
+    ceres_loss_function: None
+
+    odom_frame: odom
+    map_frame: map
+    base_frame: base_footprint
+    scan_topic: obstacle_scan
+    use_map_saver: true
+    mode: mapping
+
+    # if you'd like to immediately start continuing a map at a given pose
+    # or at the dock, but they are mutually exclusive, if pose is given
+    # will use pose
+    # map_file_name: test_steve
+    # map_start_pose: [0.0, 0.0, 0.0]
+    # map_start_at_dock: true
+
+    debug_logging: false
+    throttle_scans: 1
+    scan_queue_size: 10
+    transform_publish_period: 0.05                # 20 Hz, allow SLAM Toolbox to correct lidar odometry drift
+    map_update_interval: 0.5
+    resolution: 0.05
+    min_laser_range: 0.3                         # for rastering images
+    max_laser_range: 10.0                         # for rastering images
+    minimum_time_interval: 0.2
+    transform_timeout: 0.2
+    tf_buffer_duration: 10.
+    stack_size_to_use: 40000000                   # program needs a larger stack size to serialize large maps
+    enable_interactive_mode: true
+
+    # General Parameters
+    # use_scan_matching=true: 使用激光扫描匹配修正里程计漂移
+    # do_loop_closing=true: 检测到回环时进行全局优化
+    use_scan_matching: true
+    use_scan_barycenter: true
+    minimum_travel_distance: 0.1
+    minimum_travel_heading: 0.1
+    scan_buffer_size: 10
+    scan_buffer_maximum_scan_distance: 10.0
+    link_match_minimum_response_fine: 0.1
+    link_scan_maximum_distance: 1.5
+    loop_search_maximum_distance: 3.0
+    do_loop_closing: true
+    loop_match_minimum_chain_size: 10
+    loop_match_maximum_variance_coarse: 3.0
+    loop_match_minimum_response_coarse: 0.35
+    loop_match_minimum_response_fine: 0.45
+
+    # Correlation Parameters - Correlation Parameters
+    correlation_search_space_dimension: 0.5
+    correlation_search_space_resolution: 0.01
+    correlation_search_space_smear_deviation: 0.1
+
+    # Correlation Parameters - Loop Closure Parameters
+    loop_search_space_dimension: 8.0
+    loop_search_space_resolution: 0.05
+    loop_search_space_smear_deviation: 0.03
+
+    # Scan Matcher Parameters
+    distance_variance_penalty: 5.5
+    angle_variance_penalty: 5.0
+
+    fine_search_angle_offset: 0.00349
+    coarse_search_angle_offset: 0.349
+    coarse_angle_resolution: 0.0349
+    minimum_angle_penalty: 0.9
+    minimum_distance_penalty: 0.5
+    use_response_expansion: true
+
+# ==================== 行为树导航器配置 ====================
+# 使用行为树协调导航流程
+# 包含路径规划、路径跟踪、恢复行为等
+bt_navigator:
+  ros__parameters:
+    use_sim_time: False
+    global_frame: map
+    robot_base_frame: base_footprint
+    odom_topic: odometry
+    bt_loop_duration: 10
+    default_server_timeout: 100
+    wait_for_service_timeout: 1000
+    default_nav_to_pose_bt_xml: $(find-pkg-share pb2025_nav_bringup)/behavior_trees/navigate_to_pose_w_replanning_and_recovery.xml
+    default_nav_through_poses_bt_xml: $(find-pkg-share pb2025_nav_bringup)/behavior_trees/navigate_through_poses_w_replanning_and_recovery.xml
+    plugin_lib_names:
+      - nav2_compute_path_to_pose_action_bt_node
+      - nav2_compute_path_through_poses_action_bt_node
+      - nav2_smooth_path_action_bt_node
+      - nav2_follow_path_action_bt_node
+      - nav2_spin_action_bt_node
+      - nav2_wait_action_bt_node
+      - nav2_assisted_teleop_action_bt_node
+      - nav2_back_up_action_bt_node
+      - nav2_drive_on_heading_bt_node
+      - nav2_clear_costmap_service_bt_node
+      - nav2_is_stuck_condition_bt_node
+      - nav2_goal_reached_condition_bt_node
+      - nav2_goal_updated_condition_bt_node
+      - nav2_globally_updated_goal_condition_bt_node
+      - nav2_is_path_valid_condition_bt_node
+      - nav2_initial_pose_received_condition_bt_node
+      - nav2_reinitialize_global_localization_service_bt_node
+      - nav2_rate_controller_bt_node
+      - nav2_distance_controller_bt_node
+      - nav2_speed_controller_bt_node
+      - nav2_truncate_path_action_bt_node
+      - nav2_truncate_path_local_action_bt_node
+      - nav2_goal_updater_node_bt_node
+      - nav2_recovery_node_bt_node
+      - nav2_pipeline_sequence_bt_node
+      - nav2_round_robin_node_bt_node
+      - nav2_transform_available_condition_bt_node
+      - nav2_time_expired_condition_bt_node
+      - nav2_path_expiring_timer_condition
+      - nav2_distance_traveled_condition_bt_node
+      - nav2_single_trigger_bt_node
+      - nav2_goal_updated_controller_bt_node
+      - nav2_is_battery_low_condition_bt_node
+      - nav2_navigate_through_poses_action_bt_node
+      - nav2_navigate_to_pose_action_bt_node
+      - nav2_remove_passed_goals_action_bt_node
+      - nav2_planner_selector_bt_node
+      - nav2_controller_selector_bt_node
+      - nav2_goal_checker_selector_bt_node
+      - nav2_controller_cancel_bt_node
+      - nav2_path_longer_on_approach_bt_node
+      - nav2_wait_cancel_bt_node
+      - nav2_spin_cancel_bt_node
+      - nav2_back_up_cancel_bt_node
+      - nav2_assisted_teleop_cancel_bt_node
+      - nav2_drive_on_heading_cancel_bt_node
+      - nav2_is_battery_charging_condition_bt_node
+
+# ==================== 控制器服务器配置 ====================
+# 执行路径跟踪控制
+# 使用 OmniPidPursuitController 插件，支持全向移动
+controller_server:
+  ros__parameters:
+    use_sim_time: False
+    odom_topic: odometry
+    controller_frequency: 20.0
+    min_x_velocity_threshold: 0.001
+    min_y_velocity_threshold: 0.001
+    min_theta_velocity_threshold: 0.001
+    failure_tolerance: 0.3
+    progress_checker_plugins: ["progress_checker"]
+    goal_checker_plugins: ["general_goal_checker"]
+    controller_plugins: ["FollowPath"]
+    progress_checker:
+      plugin: "nav2_controller::SimpleProgressChecker"
+      required_movement_radius: 0.3
+      movement_time_allowance: 5.0
+    general_goal_checker:
+      stateful: True
+      plugin: "nav2_controller::SimpleGoalChecker"
+      xy_goal_tolerance: 0.1
+      yaw_goal_tolerance: 0.15
+    FollowPath:
+      plugin: "pb_omni_pid_pursuit_controller::OmniPidPursuitController"
+      controller_frequency: 20.0                        # 控制器执行频率，与 controller_server 顶层保持一致
+      translation_kp: 3.0
+      translation_ki: 0.1
+      translation_kd: 0.3
+      enable_rotation: true
+      rotation_kp: 3.0
+      rotation_ki: 0.1
+      rotation_kd: 0.3
+      transform_tolerance: 0.1
+      min_max_sum_error: 1.0
+      lookahead_dist: 0.8
+      use_velocity_scaled_lookahead_dist: true
+      lookahead_time: 1.0
+      min_lookahead_dist: 0.5
+      max_lookahead_dist: 0.8
+      use_interpolation: false
+      use_rotate_to_heading: true
+      use_rotate_to_heading_threshold: 0.1
+      min_approach_linear_velocity: 0.1
+      approach_velocity_scaling_dist: 0.5
+      v_linear_min: -2.0
+      v_linear_max: 2.0
+      v_angular_min: -4.0
+      v_angular_max: 4.0
+      curvature_min: 0.4                                # 低曲率阈值，低于此值不减速。
+      curvature_max: 0.7                                # 高曲率阈值，高于此值大幅减速。
+      reduction_ratio_at_high_curvature: 0.5            # 高曲率时的速度降低比例。 0.5 (即减速 50%)
+      curvature_forward_dist: 0.7                       # 前向距离，用于曲率计算
+      curvature_backward_dist: 0.3                      # 后向距离，用于曲率计算
+      max_velocity_scaling_factor_rate: 0.9             # 速度缩放因子的最大变化率
+
+# ==================== 局部代价地图配置 ====================
+# 用于实时避障，在机器人周围维护一个滚动窗口
+# 使用 IntensityVoxelLayer 处理点云数据
+local_costmap:
+  local_costmap:
+    ros__parameters:
+      use_sim_time: False
+      update_frequency: 10.0
+      publish_frequency: 5.0
+      global_frame: odom
+      robot_base_frame: base_footprint
+      rolling_window: true
+      width: 5
+      height: 5
+      resolution: 0.05
+      robot_radius: 0.35
+      plugins: ["static_layer", "intensity_voxel_layer", "inflation_layer"]
+      intensity_voxel_layer:
+        plugin: pb_nav2_costmap_2d::IntensityVoxelLayer
+        enabled: true
+        track_unknown_space: true
+        footprint_clearing_enabled: true
+        publish_voxel_map: false
+        combination_method: 1
+        mark_threshold: 0
+        origin_z: 0.0
+        unknown_threshold: 5
+        z_resolution: 0.125
+        z_voxels: 16
+        min_obstacle_height: 0.0
+        max_obstacle_height: 2.0
+        min_obstacle_intensity: 0.1
+        max_obstacle_intensity: 2.0
+        observation_sources: terrain_map
+        terrain_map:
+          data_type: PointCloud2
+          topic: terrain_map
+          sensor_frame: front_mid360
+          min_obstacle_height: 0.0
+          max_obstacle_height: 2.0
+          obstacle_max_range: 5.0
+          obstacle_min_range: 0.2
+      static_layer:
+        plugin: "nav2_costmap_2d::StaticLayer"
+        map_subscribe_transient_local: True
+      inflation_layer:
+        plugin: "nav2_costmap_2d::InflationLayer"
+        cost_scaling_factor: 4.0
+        inflation_radius: 0.45
+      always_send_full_costmap: False
+
+# ==================== 全局代价地图配置 ====================
+# 用于全局路径规划，覆盖整个地图范围
+# 使用 IntensityVoxelLayer 处理点云数据
+global_costmap:
+  global_costmap:
+    ros__parameters:
+      use_sim_time: False
+      update_frequency: 5.0
+      publish_frequency: 2.0
+      global_frame: map
+      robot_base_frame: base_footprint
+      robot_radius: 0.35
+      resolution: 0.05
+      track_unknown_space: true
+      plugins: ["static_layer", "intensity_voxel_layer", "inflation_layer"]
+      intensity_voxel_layer:
+        plugin: pb_nav2_costmap_2d::IntensityVoxelLayer
+        enabled: true
+        track_unknown_space: true
+        footprint_clearing_enabled: true
+        publish_voxel_map: false
+        combination_method: 1
+        mark_threshold: 0
+        origin_z: 0.0
+        unknown_threshold: 5
+        z_resolution: 0.125
+        z_voxels: 16
+        min_obstacle_height: 0.0
+        max_obstacle_height: 2.0
+        min_obstacle_intensity: 0.1
+        max_obstacle_intensity: 2.0
+        observation_sources: terrain_map_ext
+        terrain_map_ext:
+          data_type: PointCloud2
+          topic: terrain_map_ext
+          sensor_frame: front_mid360
+          min_obstacle_height: 0.0
+          max_obstacle_height: 2.0
+          obstacle_max_range: 10.0
+          obstacle_min_range: 0.2
+      static_layer:
+        plugin: "nav2_costmap_2d::StaticLayer"
+        map_subscribe_transient_local: True
+      inflation_layer:
+        plugin: "nav2_costmap_2d::InflationLayer"
+        cost_scaling_factor: 5.0
+        inflation_radius: 0.45
+      always_send_full_costmap: False
+
+# ==================== 地图服务器配置 ====================
+# 加载和提供栅格地图
+# yaml_filename 由 launch 文件动态设置
+# The yaml_filename does not need to be specified since it going to be set by defaults in launch.
+# If you'd rather set it in the yaml, remove the default "map" value in the tb3_simulation_launch.py
+# file & provide full path to map below. If CLI map configuration or launch default is provided, that will be used.
+map_server:
+  ros__parameters:
+    yaml_filename: ""
+
+# ==================== 地图保存器配置 ====================
+# 保存 SLAM 建图结果
+# 用于将实时建图结果保存为文件
+map_saver:
+  ros__parameters:
+    use_sim_time: False
+    save_map_timeout: 5.0
+    free_thresh_default: 0.25
+    occupied_thresh_default: 0.65
+    map_subscribe_transient_local: True
+
+# ==================== 路径规划器配置 ====================
+# 全局路径规划，使用 Theta* 算法
+# 支持 8 方向搜索，考虑地形代价
+planner_server:
+  ros__parameters:
+    use_sim_time: False
+    expected_planner_frequency: 10.0
+    planner_plugins: ["GridBased"]
+    GridBased:
+      plugin: "nav2_theta_star_planner/ThetaStarPlanner" # In Iron and older versions, "/" was used instead of "::"
+      how_many_corners: 8
+      w_euc_cost: 1.0
+      w_traversal_cost: 10.0
+      w_heuristic_cost: 1.0
+
+# ==================== 路径平滑器配置 ====================
+# 平滑规划器输出的路径
+# 使用 SimpleSmoother 插件
+smoother_server:
+  ros__parameters:
+    use_sim_time: False
+    smoother_plugins: ["simple_smoother"]
+    simple_smoother:
+      plugin: "nav2_smoother::SimpleSmoother"
+      tolerance: 1.0e-10
+      max_its: 1000
+      do_refinement: True
+
+# ==================== 行为服务器配置 ====================
+# 执行恢复行为（旋转、后退、等待等）
+# 当导航失败时自动触发
+behavior_server:
+  ros__parameters:
+    use_sim_time: False
+    local_costmap_topic: local_costmap/costmap_raw
+    global_costmap_topic: global_costmap/costmap_raw
+    local_footprint_topic: local_costmap/published_footprint
+    global_footprint_topic: global_costmap/published_footprint
+    cycle_frequency: 10.0
+    behavior_plugins: ["spin", "backup", "drive_on_heading", "assisted_teleop", "wait"]
+    spin:
+      plugin: "nav2_behaviors/Spin"
+    backup:
+      plugin: "pb_nav2_behaviors/BackUpFreeSpace"
+    drive_on_heading:
+      plugin: "nav2_behaviors/DriveOnHeading"
+    wait:
+      plugin: "nav2_behaviors/Wait"
+    assisted_teleop:
+      plugin: "nav2_behaviors/AssistedTeleop"
+    local_frame: odom
+    global_frame: map
+    robot_base_frame: base_footprint
+    transform_tolerance: 0.1
+    simulate_ahead_time: 2.0
+    max_rotational_vel: 2.0
+    min_rotational_vel: 0.4
+    rotational_acc_lim: 6.0
+    # params for pb_nav2_behaviors/BackUpFreeSpace
+    service_name: "global_costmap/get_costmap"
+    max_radius: 2.0
+    visualize: false
+
+# ==================== 航点跟踪器配置 ====================
+# 按顺序访问多个航点
+# 支持在每个航点停留指定时间
+waypoint_follower:
+  ros__parameters:
+    use_sim_time: False
+    loop_rate: 20
+    stop_on_failure: false
+    waypoint_task_executor_plugin: "wait_at_waypoint"
+    wait_at_waypoint:
+      plugin: "nav2_waypoint_follower::WaitAtWaypoint"
+      enabled: True
+      waypoint_pause_duration: 1000
+
+# ==================== 速度平滑器配置 ====================
+# 平滑速度指令，避免急加速急减速
+# 保护电机和机械结构
+velocity_smoother:
+  ros__parameters:
+    use_sim_time: False
+    smoothing_frequency: 20.0
+    scale_velocities: False
+    feedback: "OPEN_LOOP"
+    max_velocity: [1.5, 1.5, 3.0]
+    min_velocity: [-1.5, -1.5, -3.0]
+    max_accel: [0.8, 0.8, 3.0]
+    max_decel: [-0.8, -0.8, -3.0]
+    odom_topic: "odometry"
+    odom_duration: 0.1
+    deadband_velocity: [0.0, 0.0, 0.0]
+    velocity_timeout: 1.0
+

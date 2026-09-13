@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="760" viewBox="0 0 1120 760">
+  <defs>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#c62828"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2e7d32"/>
+    </marker>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#1565c0"/>
+    </marker>
+    <marker id="arrowDim" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#546e7a"/>
+    </marker>
+    <style>
+      .title { font-family: Arial, Helvetica, sans-serif; font-size: 24px; font-weight: 700; fill: #263238; }
+      .label { font-family: Arial, Helvetica, sans-serif; font-size: 15px; fill: #263238; }
+      .small { font-family: Arial, Helvetica, sans-serif; font-size: 13px; fill: #455a64; }
+      .mono { font-family: Consolas, "Courier New", monospace; font-size: 13px; fill: #37474f; }
+      .note { font-family: Arial, Helvetica, sans-serif; font-size: 13px; fill: #607d8b; }
+      .grid { stroke: #d8e2e8; stroke-width: 1; }
+      .panel { fill: #ffffff; stroke: #cfd8dc; stroke-width: 1.4; }
+      .offset { stroke: #1e6091; stroke-width: 3; fill: none; marker-end: url(#arrowBlue); }
+      .component { stroke: #1e6091; stroke-width: 1.6; fill: none; stroke-dasharray: 6 5; }
+      .link { stroke: #ef6c00; stroke-width: 7; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .chord { stroke: #78909c; stroke-width: 2; fill: none; stroke-dasharray: 8 6; }
+      .dim { stroke: #546e7a; stroke-width: 1.6; fill: none; marker-start: url(#arrowDim); marker-end: url(#arrowDim); }
+      .joint { fill: #ffffff; stroke: #263238; stroke-width: 2.4; }
+      .vertex { fill: #fff4e5; stroke: #ef6c00; stroke-width: 2; }
+      .axisX { stroke: #c62828; stroke-width: 2.4; marker-end: url(#arrowRed); }
+      .axisY { stroke: #2e7d32; stroke-width: 2.4; marker-end: url(#arrowGreen); }
+      .axisZ { stroke: #1565c0; stroke-width: 2.4; marker-end: url(#arrowBlue); }
+      .axisT { stroke-width: 2.3; stroke-dasharray: 5 4; }
+      .xText { fill: #c62828; font-family: Consolas, "Courier New", monospace; font-size: 13px; font-weight: 700; }
+      .yText { fill: #2e7d32; font-family: Consolas, "Courier New", monospace; font-size: 13px; font-weight: 700; }
+      .zText { fill: #1565c0; font-family: Consolas, "Courier New", monospace; font-size: 13px; font-weight: 700; }
+      .outX { fill: #fff5f5; stroke: #c62828; stroke-width: 2; }
+      .outY { fill: #f1fff1; stroke: #2e7d32; stroke-width: 2; }
+      .outZ { fill: #f2f7ff; stroke: #1565c0; stroke-width: 2; }
+      .dotX { fill: #c62828; }
+      .dotY { fill: #2e7d32; }
+      .dotZ { fill: #1565c0; }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="1120" height="760" fill="#fbfdff"/>
+  <text x="36" y="42" class="title">Power-On Zero Topology, theta1=theta2=theta3=0</text>
+  <text x="36" y="66" class="small">XZ side view of the FLU world frame. Dot-in-circle points out of this view toward -Y0.</text>
+
+  <!-- Drawing transform:
+       screen_x = 130 + 1.15 * Y_mm
+       screen_y = 690 - 1.15 * Z_mm
+
+       Power-on zero constraint:
+       J1 = O0 = (0, 0, 0)
+       J2 = (42.64, 0, 98.18)
+       J3 = (42.64, 0, 98.18 + 383.929445)
+          = (42.64, 0, 482.109445)
+       J2->J3 chord is vertical, along +Z0.
+
+       Convex link auxiliary vertex:
+       V = (0, 42.64 - 43.952671, 98.18 + 267.392476)
+         = (0, -1.312671, 365.572476)
+  -->
+
+  <!-- XZ grid and world plane axes. -->
+  <g opacity="0.74">
+    <line x1="130" y1="690" x2="450" y2="690" class="grid"/>
+    <line x1="130" y1="575" x2="450" y2="575" class="grid"/>
+    <line x1="130" y1="460" x2="450" y2="460" class="grid"/>
+    <line x1="130" y1="345" x2="450" y2="345" class="grid"/>
+    <line x1="130" y1="230" x2="450" y2="230" class="grid"/>
+    <line x1="130" y1="115" x2="450" y2="115" class="grid"/>
+    <line x1="130" y1="690" x2="130" y2="96" class="grid"/>
+    <line x1="245" y1="690" x2="245" y2="96" class="grid"/>
+    <line x1="360" y1="690" x2="360" y2="96" class="grid"/>
+  </g>
+  <line x1="130" y1="690" x2="456" y2="690" class="axisY"/>
+  <line x1="130" y1="690" x2="130" y2="92" class="axisZ"/>
+  <text x="462" y="695" class="yText">+X0 forward</text>
+  <text x="106" y="90" class="zText">+Z0 up</text>
+
+  <!-- Base-to-joint2 offset. -->
+  <path d="M 130.00 690.00 L 179.04 577.09" class="offset"/>
+  <path d="M 130.00 690.00 L 179.04 690.00 L 179.04 577.09" class="component"/>
+  <text x="190" y="642" class="mono">J2 offset: X=42.64, Z=98.18</text>
+
+  <!-- Vertical joint2-joint3 chord and convex physical link. -->
+  <path d="M 179.04 577.09 L 179.04 135.57" class="chord"/>
+  <path d="M 179.04 577.09 L 128.49 269.59 L 179.04 135.57" class="link"/>
+  <circle cx="128.49" cy="269.59" r="7" class="vertex"/>
+  <text x="18" y="274" class="small">convex link vertex</text>
+
+  <!-- Dimensions. -->
+  <path d="M 151 577.09 L 151 135.57" class="dim"/>
+  <text x="58" y="360" class="mono" transform="rotate(-90 58 360)">J2-J3 chord = 383.929445 mm</text>
+  <path d="M 164 570 L 136 286" class="dim"/>
+  <text x="38" y="421" class="mono">270.98076211</text>
+  <path d="M 132 252 L 171 145" class="dim"/>
+  <text x="82" y="205" class="mono">124.55</text>
+
+  <!-- Joint markers. -->
+  <circle cx="130.00" cy="690.00" r="9" class="joint"/>
+  <circle cx="179.04" cy="577.09" r="10" class="joint"/>
+  <circle cx="179.04" cy="135.57" r="11" class="joint"/>
+  <text x="82" y="714" class="label">{0}/{1} joint1</text>
+  <text x="191" y="584" class="label">{2} joint2</text>
+  <text x="191" y="142" class="label">{3} joint3 / {4} tool</text>
+
+  <!-- Frame 0 and frame 1 share origin.
+       -Y0/X1 out of XZ view, Y1 +X0, Z0/Z1 +Z0.
+  -->
+  <circle cx="103" cy="665" r="13" class="outX"/>
+  <circle cx="103" cy="665" r="4" class="dotX"/>
+  <text x="70" y="650" class="xText">-Y0/X1</text>
+  <line x1="130" y1="690" x2="207" y2="690" class="axisY"/>
+  <line x1="130" y1="690" x2="130" y2="613" class="axisZ"/>
+  <text x="211" y="695" class="yText">X0/Y1</text>
+  <text x="135" y="610" class="zText">Z0/Z1</text>
+
+  <!-- Frame 2: X2=+Z0, Y2=-X0, Z2=-Y0. -->
+  <line x1="171.04" y1="577.09" x2="171.04" y2="500.09" class="axisX"/>
+  <line x1="179.04" y1="577.09" x2="102.04" y2="577.09" class="axisY"/>
+  <circle cx="157.04" cy="608.09" r="13" class="outZ"/>
+  <circle cx="157.04" cy="608.09" r="4" class="dotZ"/>
+  <text x="150" y="496" class="xText">X2</text>
+  <text x="76" y="582" class="yText">Y2</text>
+  <text x="122" y="628" class="zText">Z2</text>
+
+  <!-- Frame 3: X3=+Z0, Y3=-X0, Z3=-Y0. -->
+  <line x1="169.04" y1="135.57" x2="169.04" y2="58.57" class="axisX"/>
+  <line x1="179.04" y1="135.57" x2="102.04" y2="135.57" class="axisY"/>
+  <circle cx="154.04" cy="166.57" r="13" class="outZ"/>
+  <circle cx="154.04" cy="166.57" r="4" class="dotZ"/>
+  <text x="148" y="54" class="xText">X3</text>
+  <text x="76" y="141" class="yText">Y3</text>
+  <text x="119" y="187" class="zText">Z3</text>
+
+  <!-- Tool frame at joint3:
+       X4=-Y0, Y4=+X0, Z4=+Z0 at theta3=0.
+       Frame 4 follows joint3 rotation about the joint3 roll axis.
+       Slightly offset from frame 3 arrows for readability.
+  -->
+  <circle cx="219.04" cy="166.57" r="13" class="outX"/>
+  <circle cx="219.04" cy="166.57" r="4" class="dotX"/>
+  <line x1="187.04" y1="135.57" x2="264.04" y2="135.57" class="axisY axisT"/>
+  <line x1="190.04" y1="135.57" x2="190.04" y2="40.57" class="axisZ axisT"/>
+  <text x="228" y="187" class="xText">X4</text>
+  <text x="269" y="141" class="yText">Y4</text>
+  <text x="196" y="36" class="zText">Z4 = +Z0 at zero</text>
+  <text x="224" y="207" class="mono">frame 4 follows theta3</text>
+
+  <!-- Side panel. -->
+  <rect x="610" y="96" width="458" height="560" rx="6" class="panel"/>
+  <text x="636" y="130" class="label">Power-on zero definition used here</text>
+  <text x="636" y="162" class="mono">theta1 = theta2 = theta3 = 0 deg</text>
+  <text x="636" y="186" class="mono">J1 / world origin = (0, 0, 0)</text>
+  <text x="636" y="210" class="mono">J2 = (42.64, 0, 98.18)</text>
+  <text x="636" y="234" class="mono">J3 = (42.64, 0, 482.109445)</text>
+  <text x="636" y="258" class="mono">J2->J3 is vertical, +Z0 direction</text>
+
+  <text x="636" y="306" class="label">Axis directions in this zero pose</text>
+  <text x="636" y="338" class="mono">frame 0: X0 forward, Y0 left, Z0 up</text>
+  <text x="636" y="362" class="mono">joint1: X1=-Y0, Y1=+X0, Z1=+Z0</text>
+  <text x="636" y="386" class="mono">joint2: X2=+Z0, Y2=-X0, Z2=-Y0</text>
+  <text x="636" y="410" class="mono">joint3: X3=+Z0, Y3=-X0, Z3=-Y0</text>
+  <text x="636" y="434" class="mono">joint4: X4=-Y0, Y4=+X0, Z4=+Z0 at zero</text>
+
+  <text x="636" y="482" class="label">Interpretation</text>
+  <text x="636" y="512" class="mono">X1 is opposite Y0 at joint1.</text>
+  <text x="636" y="536" class="mono">Z2 and Z3 are roll axes, both along -Y0.</text>
+  <text x="636" y="560" class="mono">Z4 initially matches Z0, then rotates with theta3.</text>
+  <text x="636" y="584" class="mono">Joint4 origin always coincides with joint3.</text>
+  <text x="636" y="628" class="small">Small visual offsets are used near joint3 so overlapping axes remain readable.</text>
+
+  <text x="36" y="732" class="note">This diagram follows the new power-on physical zero, not the previous direct XLSX expansion. It keeps the earlier J2 offset and J2-J3 endpoint length.</text>
+</svg>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="860" viewBox="0 0 980 860">
+  <style>
+    .bg{fill:#fbfbf8}.field{fill:#fffdf8;stroke:#202020;stroke-width:2}
+    .grid{stroke:#d8d3c6;stroke-width:1}.axis{stroke:#8a8376;stroke-width:2}
+    .path{fill:none;stroke:#111;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+    .spin{fill:none;stroke:#b65f00;stroke-width:4;stroke-linecap:round}
+    .pt{fill:#2457c5}.start{fill:#17803d}.end{fill:#c92a2a}
+    .label{font:bold 13px Arial,sans-serif;fill:white;text-anchor:middle;dominant-baseline:central}
+    .text{font:14px Arial,sans-serif;fill:#26231f}.small{font:12px Arial,sans-serif;fill:#4e4941}
+    .title{font:bold 24px Arial,sans-serif;fill:#111}.box{fill:#fff;stroke:#d8d3c6;stroke-width:1}
+  </style>
+  <rect width="980" height="860" class="bg"/>
+  <text x="70" y="42" class="title">Yaw AutoTune Closed Target Path</text>
+  <text x="70" y="66" class="small">FLU world frame: +X forward is up, +Y left is left. Field boundary is 2.4m x 3.0m.</text>
+
+  <!-- Field: x=-1.2..1.2m, y=-1.5..1.5m. Scale = 233.333 px/m. -->
+  <rect x="80" y="80" width="560" height="700" class="field"/>
+  <line x1="80" y1="780" x2="640" y2="780" class="grid"/>
+  <line x1="80" y1="663.3" x2="640" y2="663.3" class="grid"/>
+  <line x1="80" y1="546.7" x2="640" y2="546.7" class="grid"/>
+  <line x1="80" y1="430" x2="640" y2="430" class="axis"/>
+  <line x1="80" y1="313.3" x2="640" y2="313.3" class="grid"/>
+  <line x1="80" y1="196.7" x2="640" y2="196.7" class="grid"/>
+  <line x1="80" y1="80" x2="640" y2="80" class="grid"/>
+  <line x1="80" y1="80" x2="80" y2="780" class="grid"/>
+  <line x1="196.7" y1="80" x2="196.7" y2="780" class="grid"/>
+  <line x1="313.3" y1="80" x2="313.3" y2="780" class="grid"/>
+  <line x1="360" y1="80" x2="360" y2="780" class="axis"/>
+  <line x1="430" y1="80" x2="430" y2="780" class="grid"/>
+  <line x1="546.7" y1="80" x2="546.7" y2="780" class="grid"/>
+  <line x1="640" y1="80" x2="640" y2="780" class="grid"/>
+
+  <text x="72" y="795" class="small">Y=+1.2m</text>
+  <text x="627" y="795" class="small">Y=-1.2m</text>
+  <text x="36" y="84" class="small">X=+1.5m</text>
+  <text x="36" y="784" class="small">X=-1.5m</text>
+  <text x="368" y="424" class="small">origin</text>
+
+  <!-- Nominal endpoints:
+       S=(0,0), 1=(0,0.63), 2/3=(0.63,0.63), 4=(0.28,0.98),
+       5=(0,0.98), 6=(0,0.30), 7=(0.30,0), 8=(0,0). -->
+  <path d="M 360 430 L 360 283 L 507 283 L 425.3 201.3 L 360 201.3 L 360 360 L 430 430 L 360 430" class="path"/>
+  <path d="M 528 283 A 21 21 0 1 1 512 263" class="spin"/>
+  <path d="M 512 263 L 523 262 L 516 271" class="spin"/>
+
+  <g><circle cx="360" cy="430" r="13" class="start"/><text x="360" y="430" class="label">S</text></g>
+  <g><circle cx="360" cy="283" r="12" class="pt"/><text x="360" y="283" class="label">1</text></g>
+  <g><circle cx="507" cy="283" r="12" class="pt"/><text x="507" y="283" class="label">2</text></g>
+  <g><circle cx="535" cy="283" r="12" class="pt"/><text x="535" y="283" class="label">3</text></g>
+  <g><circle cx="425.3" cy="201.3" r="12" class="pt"/><text x="425.3" y="201.3" class="label">4</text></g>
+  <g><circle cx="360" cy="201.3" r="12" class="pt"/><text x="360" y="201.3" class="label">5</text></g>
+  <g><circle cx="360" cy="360" r="12" class="pt"/><text x="360" y="360" class="label">6</text></g>
+  <g><circle cx="430" cy="430" r="12" class="pt"/><text x="430" y="430" class="label">7</text></g>
+  <g><circle cx="336" cy="430" r="12" class="end"/><text x="336" y="430" class="label">8</text></g>
+
+  <g transform="translate(685 92)">
+    <rect x="0" y="0" width="260" height="490" rx="6" class="box"/>
+    <text x="16" y="26" class="text">Segment sequence</text>
+    <text class="small">
+      <tspan x="16" y="56">1 ROBOT_NO_YAW_VEL</tspan>
+      <tspan x="16" dy="18">  v=(+0.35, 0), yaw hold, 1.8s</tspan>
+      <tspan x="16" dy="24">2 WORLD_NO_YAW_VEL</tspan>
+      <tspan x="16" dy="18">  v=(0, -0.35), yaw hold, 1.8s</tspan>
+      <tspan x="16" dy="24">3 ROBOT_VEL</tspan>
+      <tspan x="16" dy="18">  in-place +0.45rad/s spin, 1.4s</tspan>
+      <tspan x="16" dy="24">4 WORLD_VEL</tspan>
+      <tspan x="16" dy="18">  v=(+0.25, +0.25), -0.45rad/s</tspan>
+      <tspan x="16" dy="18">  returns yaw to zero</tspan>
+      <tspan x="16" dy="24">5 ROBOT_NO_YAW_POS</tspan>
+      <tspan x="16" dy="18">  d=(0, +0.28), yaw hold</tspan>
+      <tspan x="16" dy="24">6 WORLD_NO_YAW_POS</tspan>
+      <tspan x="16" dy="18">  d=(-0.68, 0), yaw hold</tspan>
+      <tspan x="16" dy="24">7 ROBOT_POS</tspan>
+      <tspan x="16" dy="18">  d=(-0.30, -0.30), yaw=+30deg</tspan>
+      <tspan x="16" dy="24">8 WORLD_POS</tspan>
+      <tspan x="16" dy="18">  d=(0, +0.30), yaw=-30deg</tspan>
+      <tspan x="16" dy="30">Nominal end: x=0, y=0, yaw=0</tspan>
+      <tspan x="16" dy="18">Envelope: x 0..0.98m, y -0.63..0m</tspan>
+    </text>
+  </g>
+
+  <text x="70" y="825" class="text">Controller coverage: yaw angle PID, yaw rate PID, XY position loop, yaw position loop, and wheel velocity PID all receive active segments.</text>
+</svg>

@@ -1,0 +1,27 @@
+# Authoritative downstairs sequence mirrored from R2_climb.c.
+version: 3
+flow: downstairs
+source: Applications/R2_user/Src/R2_climb.c
+coordinate_frame: {x: forward, y: left, z: up, yaw: ccw}
+units: {leg_target: mm, drive_delta: mm, chassis_delta: m, timeout: ms}
+standby_leg_target_mm: -30
+pre_sequence:
+  - {state: DOWN_LASER_APPROACH_H_GT_65, command: chassis_velocity, x_mps: 0.08, trigger: "height channel > 65 mm", timeout_ms: 8000}
+  - {state: DOWN_PREPARE_CHASSIS_FORWARD_5, command: chassis_distance, x_m: 0.005, timeout_ms: 4000}
+  - {state: PREPARE_ALL_LEGS_MINUS_30, leg_target_mm: [-30, -30, -30, -30]}
+steps:
+  - {index: 1, state: DOWN_01_FRONT_UP_10_X23, kind: leg_target, leg_target_mm: [200, -30, -30, 200]}
+  - {index: 2, state: DOWN_02_REAR_ZERO, kind: leg_target, leg_target_mm: [200, 0, 0, 200]}
+  - {index: 3, state: DOWN_03_REAR_UP_10, kind: leg_target, leg_target_mm: [200, 10, 10, 200]}
+  - {index: 4, state: DOWN_04_ALL_LEGS_UP_10, kind: leg_target, leg_target_mm: [210, 20, 20, 210]}
+  - {index: 5, state: DOWN_05_ALL_DRIVE_FORWARD_500, kind: drive_delta, group: all, drive_delta_mm: 500, auto_pause_point: true}
+  - {index: 6, state: DOWN_06_ALL_DRIVE_FORWARD_30_X11, kind: drive_delta, group: all, drive_delta_mm: 330}
+  - {index: 7, state: DOWN_07_ALL_DRIVE_FORWARD_10_X2, kind: drive_delta, group: all, drive_delta_mm: 20}
+  - {index: 8, state: DOWN_08_ALL_LEGS_DOWN_10_X6, kind: leg_target, leg_target_mm: [150, -30, -30, 150]}
+  - {index: 9, state: DOWN_09_ALL_DRIVE_FORWARD_30_X3, kind: drive_delta, group: all, drive_delta_mm: 90}
+  - {index: 10, state: DOWN_10_ALL_DRIVE_FORWARD_10, kind: drive_delta, group: all, drive_delta_mm: 10}
+  - {index: 11, state: DOWN_11_REAR_UP_10_X19, kind: leg_target, leg_target_mm: [150, 160, 160, 150]}
+  - {index: 12, state: DOWN_12_ALL_DRIVE_FORWARD_30_X4, kind: drive_delta, group: all, drive_delta_mm: 120}
+  - {index: 13, state: DOWN_13_ALL_LEGS_ZERO, kind: leg_target, leg_target_mm: [0, 0, 0, 0]}
+  - {index: 14, state: DOWN_14_ALL_LEGS_DOWN_10_X3, kind: leg_target, leg_target_mm: [-30, -30, -30, -30]}
+  - {index: 15, state: DOWN_15_CHASSIS_FORWARD_100, kind: chassis_delta, x_m: 0.10}
